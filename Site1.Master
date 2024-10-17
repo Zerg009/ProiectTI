@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="libs/all.css" rel="stylesheet" />
+    <link href="libs/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+   
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%-- Navbar --%>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="img/logo.png" width="30" height="30" class="d-inline-block align-text-top" />
+                        Salary Reports
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manage Data
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="UpdateData.aspx">Update Data</a></li>
+                                    <li><a class="dropdown-item" href="AddEmployees.aspx">Add Employees</a></li>
+                                    <li><a class="dropdown-item" href="RemoveEmployees.aspx">Remove Employees</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li><a class="dropdown-item" href="SalaryCalculation.aspx">Salary Calculation</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Print
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="PaymentStatus.aspx">Payment Status</a></li>
+                                    <li><a class="dropdown-item" href="PaySlips.aspx">Payslips</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <%-- Main Content --%>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+
+
+    <script src="libs/jquery-3.7.1.slim.min.js"></script>
+    <script src="libs/bootstrap.bundle.min.js"></script>
+    <script src="libs/popper.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+</body>
+</html>
