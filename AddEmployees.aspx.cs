@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Oracle.ManagedDataAccess.Client;
+using System.Data;
 
 namespace WebApplication1
 {
@@ -13,7 +15,10 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
         }
         protected void btnAddEmployee_Click(object sender, EventArgs e)
         {
@@ -67,6 +72,52 @@ namespace WebApplication1
             txtNume.Text = "";
             txtPrenume.Text = "";
             txtSalariu.Text = "";
+        }
+        private void BindGrid()
+        {
+            string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
+            using (OracleConnection conn = new OracleConnection(connString))
+            {
+                using (OracleCommand cmd = new OracleCommand("SELECT nume, prenume, salar_baza FROM salarii_angajati", conn))
+                {
+                    using (OracleDataAdapter da = new OracleDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        GridView1.DataSource = dt;
+                        GridView1.DataBind();
+                    }
+                }
+            }
+        }
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedRowIndex = GridView1.SelectedIndex;
+            string column1Value = GridView1.SelectedRow.Cells[1].Text;  // Adjust column index as needed
+
+            // Example: Perform actions based on selected row data
+            // Manipulate the data in the selected row here
+        }
+        protected void btnProcessSelection_Click(object sender, EventArgs e)
+        {
+            List<string> selectedRows = new List<string>();
+
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                // Find the CheckBox control
+                CheckBox chkSelect = (CheckBox)row.FindControl("CheckBoxSelect");
+
+                // Check if the CheckBox is checked
+                if (chkSelect != null && chkSelect.Checked)
+                {
+                    // Assuming you want to collect the 'nume' column value as an example
+                    string nume = row.Cells[1].Text; // Adjust the index based on your columns
+                    selectedRows.Add(nume);
+                }
+            }
+
+            // Now you can process the selectedRows list as needed
+            // For example, display the selected names in a label or process them further
         }
     }
 }

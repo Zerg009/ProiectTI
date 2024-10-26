@@ -29,6 +29,19 @@
         <div class="form-group">
             <asp:Button ID="btnAddEmployee" runat="server" Text="Add Employee" OnClick="btnAddEmployee_Click" />
         </div>
+
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="true" 
+              OnSelectedIndexChanged="GridView1_SelectedIndexChanged" 
+              AllowPaging="True" PageSize="10">
+    <Columns>
+        <asp:TemplateField>
+            <ItemTemplate>
+                <asp:CheckBox ID="CheckBoxSelect" runat="server" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
+        <asp:Button ID="btnProcessSelection" runat="server" Text="Process Selection" OnClick="btnProcessSelection_Click" />
     </div>
 
 </asp:Content>
