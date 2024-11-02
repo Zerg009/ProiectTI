@@ -6,10 +6,11 @@ body, html {
     /*justify-content: center;
     align-items: center;*/
 }
+
 body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
 /* Centering the form */
 .form-container {
     display: flex;
@@ -42,18 +43,88 @@ body {
     color: green;
 }
 
-        #txtSearch {
-            margin-bottom: 20px;
-        }
-        #gvEmployees {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        #gvEmployees th, #gvEmployees td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        #gvEmployees th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
+#txtSearch {
+    margin-bottom: 20px;
+}
+
+#gvEmployees {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#gvEmployees th, #gvEmployees td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#gvEmployees th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.gridview-container {
+    width: 100%;
+    border-collapse: collapse; /* Merge borders of adjacent cells */
+    margin: 20px 0; /* Add some spacing around the grid */
+}
+
+.gridview-container th, .gridview-container td {
+    border: 1px solid #dddddd; /* Light grey border */
+    text-align: left; /* Align text to the left */
+    padding: 8px; /* Add padding inside cells */
+}
+
+.gridview-container th {
+    background-color: #f2f2f2; /* Light background for header */
+    font-weight: bold; /* Make header text bold */
+}
+
+.gridview-container tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+.gridview-container tr:hover {
+    background-color: #e0e0e0; /* Highlight row on hover */
+}
+
+
+.gridview-container .column-nume {
+    width: 100px;
+}
+
+.gridview-container .column-prenume {
+     width: 100px;
+}
+
+.gridview-container .column-functie {
+     width: 175px;
+}
+/* Set specific widths for certain columns */
+.gridview-container .column-salar-baza ,
+.gridview-container .column-bonus,
+.gridview-container .column-premii-brute,
+.gridview-container .column-retineri,
+.gridview-container .column-total-brut,
+.gridview-container .column-brut-impozabil,
+.gridview-container .column-cas,
+.gridview-container .column-cass,
+.gridview-container .column-impozit,
+.gridview-container .column-virat-card {
+    width: 80px; /* Set width for other relevant columns */
+}
+.column-small-numeric {
+    width: 80px; /* Adjust this value to set the desired width */
+    text-align: right; /* Optional: Align text to the right for numeric values */
+}
+/* Ensure input fields respect the column width */
+.gridview-container input[type="text"] {
+    width: 100%; /* Make input fields take full width of the cell */
+    box-sizing: border-box; /* Include padding and borders in width */
+    padding: 5px; /* Optional: Add padding for better appearance */
+}
+
+/* Optional: Add styles to labels if you have them */
+.gridview-container label {
+    width: 100%; /* Ensure labels take full width */
+    box-sizing: border-box; /* Include padding and borders in width */
+}
