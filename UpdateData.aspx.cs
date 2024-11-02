@@ -213,17 +213,11 @@ namespace WebApplication1
                     TextBox txtSpor = (TextBox)row.FindControl("txtSPOR");
                     TextBox txtPremiiBrute = (TextBox)row.FindControl("txtPREMII_BRUTE");
                     TextBox txtRetineri = (TextBox)row.FindControl("txtRETINERI");
-                    TextBox txtNume = (TextBox)row.FindControl("txtNUME");
-                    TextBox txtPrenume = (TextBox)row.FindControl("txtPRENUME");
-                    TextBox txtFunctie = (TextBox)row.FindControl("txtFUNCTIE");
 
                     int salariuBaza = int.Parse(txtSalariuBaza.Text);
                     int spor = int.Parse(txtSpor.Text);
                     int premiiBrute = int.Parse(txtPremiiBrute.Text);
                     int retineri = int.Parse(txtRetineri.Text);
-                    string nume = txtNume.Text;
-                    string prenume = txtPrenume.Text;
-                    string functie = txtFunctie.Text;
                     int employeeId = Convert.ToInt32(gvEmployees.DataKeys[row.RowIndex].Value);
 
                     // Perform your database update logic here
@@ -231,15 +225,9 @@ namespace WebApplication1
                     {
                         connection.Open();
                         using (var command = new OracleCommand(
-                            @"UPDATE Salarii_Angajati 
-                              SET SALAR_BAZA = :salariuBaza, 
-                                  SPOR = :spor, 
-                                  PREMII_BRUTE = :premiiBrute, 
-                                  RETINERI = :retineri, 
-                                  NUME = :nume, 
-                                  PRENUME = :prenume, 
-                                  FUNCTIE = :functie 
-                              WHERE NR_CRT = :employeeId",
+                            @"UPDATE Salarii_Angajati SET SALAR_BAZA = :salariuBaza, 
+                            SPOR = :spor, PREMII_BRUTE = :premiiBrute, 
+                            RETINERI = :retineri WHERE NR_CRT = :employeeId",
                             connection
                         ))
                         {
@@ -247,12 +235,17 @@ namespace WebApplication1
                             command.Parameters.Add(new OracleParameter("spor", spor));
                             command.Parameters.Add(new OracleParameter("premiiBrute", premiiBrute));
                             command.Parameters.Add(new OracleParameter("retineri", retineri));
-                            command.Parameters.Add(new OracleParameter("nume", nume));
-                            command.Parameters.Add(new OracleParameter("prenume", prenume));
-                            command.Parameters.Add(new OracleParameter("functie", functie));
                             command.Parameters.Add(new OracleParameter("employeeId", employeeId));
 
                             command.ExecuteNonQuery();
+                        }
+                        // Call the recalculation procedure immediately after the update
+                        using (var commandRecalc = new OracleCommand(
+                            "BEGIN Initiate_Recalculations(:employeeId); END;",
+                            connection))
+                        {
+                            commandRecalc.Parameters.Add(new OracleParameter("employeeId", employeeId));
+                            commandRecalc.ExecuteNonQuery();
                         }
                     }
                 }

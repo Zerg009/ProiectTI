@@ -13,6 +13,24 @@ namespace WebApplication1 {
     public partial class WebForm1 {
         
         /// <summary>
+        /// btnSaveAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveAll;
+        
+        /// <summary>
+        /// PaginationPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PaginationPanel;
+        
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>
@@ -28,25 +46,7 @@ namespace WebApplication1 {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// btnSaveAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveAll;
-        
-        /// <summary>
-        /// PaginationPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PaginationPanel;
+        protected global::System.Web.UI.WebControls.LinkButton btnSearch;
         
         /// <summary>
         /// lblEntriesDropdown control.

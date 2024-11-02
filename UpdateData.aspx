@@ -4,55 +4,72 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <asp:textbox id="txtSearch" runat="server" placeholder="Căutare..."></asp:textbox>
-        <asp:button id="btnSearch" runat="server" text="Caută" onclick="btnSearch_Click" />
-        <asp:button id="btnSaveAll" runat="server" text="Salvează Tot" onclick="btnSaveAll_Click" />
 
-        <asp:panel id="PaginationPanel" runat="server" cssclass="d-flex justify-content-end mb-3">
-            <div class="d-flex align-items-center">
-                <asp:Label ID="lblEntriesDropdown" runat="server" Text="Rows per page:" CssClass="me-2" />
-                <asp:DropDownList ID="PageSizeDropdown" runat="server" CssClass="form-select me-2" 
-                                    AutoPostBack="true" OnSelectedIndexChanged="PageSizeDropdown_SelectedIndexChanged" 
-                                    style="width: 80px;"> 
-                    <asp:ListItem Text="5" Value="5" />
-                    <asp:ListItem Text="20" Value="20" />
-                    <asp:ListItem Text="50" Value="50" />
-                </asp:DropDownList>
+        <!-- Save Button -->
+        <div class="d-flex justify-content-end align-items-center mb-3">
+            <asp:LinkButton ID="btnSaveAll" runat="server" CssClass="btn btn-success ms-3" OnClick="btnSaveAll_Click">
+                <i class="fas fa-save me-2"></i> Salvează
+            </asp:LinkButton>
+        </div>
 
-                <asp:TextBox ID="PageNumberTextbox" runat="server" CssClass="form-control me-2" 
-                             Text="1" OnTextChanged="PageNumberTextbox_TextChanged" 
-                             AutoPostBack="true" type="number" min="1" 
-                             style="width: 60px;" /> 
+        <asp:Panel ID="PaginationPanel" runat="server" CssClass="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <!-- Left-aligned search box -->
+                <div class="d-flex">
+                    <div class="input-group me-1" style="width: 200px;">
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Căutare..." />
+                        <div class="input-group-append">
+                            <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary" OnClick="btnSearch_Click">
+                            <i class="fas fa-search"></i>
+                        </asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
 
-                <asp:Button ID="PreviousPageButton" runat="server" CssClass="btn btn-primary me-1" 
-                             Text="&laquo;" OnClick="PreviousPageButton_Click" />
+                <!-- Right-aligned pagination controls -->
+                <div class="d-flex align-items-center">
+                    <asp:Label ID="lblEntriesDropdown" runat="server" Text="Rows per page:" CssClass="me-2" />
+                    <asp:DropDownList ID="PageSizeDropdown" runat="server" CssClass="form-select me-2"
+                        AutoPostBack="true" OnSelectedIndexChanged="PageSizeDropdown_SelectedIndexChanged"
+                        Style="width: 80px;">
+                        <asp:ListItem Text="5" Value="5" />
+                        <asp:ListItem Text="20" Value="20" />
+                        <asp:ListItem Text="50" Value="50" />
+                    </asp:DropDownList>
 
-                <asp:Button ID="NextPageButton" runat="server" CssClass="btn btn-primary me-2" 
-                             Text="&raquo;" OnClick="NextPageButton_Click"  />
+                    <asp:TextBox ID="PageNumberTextbox" runat="server" CssClass="form-control me-2"
+                        Text="1" OnTextChanged="PageNumberTextbox_TextChanged"
+                        AutoPostBack="true" type="number" min="1"
+                        Style="width: 60px;" />
+
+                    <asp:Button ID="PreviousPageButton" runat="server" CssClass="btn btn-primary me-1"
+                        Text="&laquo;" OnClick="PreviousPageButton_Click" />
+
+                    <asp:Button ID="NextPageButton" runat="server" CssClass="btn btn-primary"
+                        Text="&raquo;" OnClick="NextPageButton_Click" />
+                </div>
             </div>
-    
-            
-        </asp:panel>
-        <asp:gridview id="gvEmployees" runat="server" cssclass="gridview-container" autogeneratecolumns="False"
-            allowsorting="True" onsorting="gvEmployees_Sorting" allowpaging="False"
-            onpageindexchanging="gvEmployees_PageIndexChanging" datakeynames="NR_CRT">
+    </asp:Panel>
+        <asp:GridView ID="gvEmployees" runat="server" CssClass="gridview-container" AutoGenerateColumns="False"
+            AllowSorting="True" OnSorting="gvEmployees_Sorting" AllowPaging="False"
+            OnPageIndexChanging="gvEmployees_PageIndexChanging" DataKeyNames="NR_CRT">
             <Columns>
                 <asp:BoundField DataField="NR_CRT" HeaderText="ID" ReadOnly="True" />
                 <asp:TemplateField HeaderText="Nume" ItemStyle-CssClass="column-nume">
-                    <ItemTemplate >
-                        <asp:TextBox ID="txtNUME" runat="server" Text='<%# Bind("NUME") %>'/>
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtNUME" runat="server" Text='<%# Bind("NUME") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Prenume" ItemStyle-CssClass="column-prenume">
                     <ItemTemplate>
-                        <asp:TextBox ID="txtPRENUME" runat="server" Text='<%# Bind("PRENUME") %>'/>
+                        <asp:TextBox ID="txtPRENUME" runat="server" Text='<%# Bind("PRENUME") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Funcție" ItemStyle-CssClass="column-functie">
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFUNCTIE" runat="server" Text='<%# Bind("FUNCTIE") %>'/>
+                        <asp:TextBox ID="txtFUNCTIE" runat="server" Text='<%# Bind("FUNCTIE") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Salariul de Bază" ItemStyle-CssClass="column-salar-baza ">
@@ -100,9 +117,9 @@
                         <asp:Label ID="lblIMPOZIT" runat="server" Text='<%# Eval("IMPOZIT") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-                
+
                 <asp:BoundField DataField="VIRAT_CARD" HeaderText="Virat Card" ReadOnly="True" ItemStyle-CssClass="column-virat-card" />
             </Columns>
-        </asp:gridview>
+        </asp:GridView>
     </div>
 </asp:Content>

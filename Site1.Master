@@ -13,7 +13,7 @@
     <link href="libs/all.css" rel="stylesheet" />
     <link href="libs/bootstrap.min.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
-
+    <link href="libs/fontawesome.min.css" rel="stylesheet" />
    
 </head>
 <body>

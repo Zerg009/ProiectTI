@@ -106,6 +106,7 @@
     <Content Include="libs\bootstrap.bundle.min.js" />
     <Content Include="libs\bootstrap.min.css" />
     <Content Include="libs\bootstrap.min.js" />
+    <Content Include="libs\fontawesome.min.css" />
     <Content Include="libs\jquery-3.7.1.slim.min.js" />
     <Content Include="libs\popper.min.js" />
     <Content Include="packages.config" />
