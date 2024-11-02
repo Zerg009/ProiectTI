@@ -220,9 +220,37 @@ namespace WebApplication1
                     int retineri = int.Parse(txtRetineri.Text);
                     int employeeId = Convert.ToInt32(gvEmployees.DataKeys[row.RowIndex].Value);
 
-                    // Perform your database update logic here...
+                    // Perform your database update logic here
+                    using (var connection = new OracleConnection(connString))
+                    {
+                        connection.Open();
+                        using (var command = new OracleCommand(
+                            @"UPDATE Salarii_Angajati SET SALAR_BAZA = :salariuBaza, 
+                            SPOR = :spor, PREMII_BRUTE = :premiiBrute, 
+                            RETINERI = :retineri WHERE NR_CRT = :employeeId",
+                            connection
+                        ))
+                        {
+                            command.Parameters.Add(new OracleParameter("salariuBaza", salariuBaza));
+                            command.Parameters.Add(new OracleParameter("spor", spor));
+                            command.Parameters.Add(new OracleParameter("premiiBrute", premiiBrute));
+                            command.Parameters.Add(new OracleParameter("retineri", retineri));
+                            command.Parameters.Add(new OracleParameter("employeeId", employeeId));
+
+                            command.ExecuteNonQuery();
+                        }
+                        // Call the recalculation procedure immediately after the update
+                        using (var commandRecalc = new OracleCommand(
+                            "BEGIN Initiate_Recalculations(:employeeId); END;",
+                            connection))
+                        {
+                            commandRecalc.Parameters.Add(new OracleParameter("employeeId", employeeId));
+                            commandRecalc.ExecuteNonQuery();
+                        }
+                    }
                 }
             }
+
 
             BindGrid(); // Refresh the GridView after saving changes
         }
