@@ -13,7 +13,6 @@ namespace WebApplication1
     public partial class WebForm1 : System.Web.UI.Page
     {
         string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
-        private int TotalEntries = 0;
         private int PageSize => int.Parse(PageSizeDropdown.SelectedValue);
         private int CurrentPage
         {
@@ -24,6 +23,17 @@ namespace WebApplication1
             set
             {
                 ViewState["CurrentPage"] = value;
+            }
+        }
+        private int TotalEntries
+        {
+            get
+            {
+                return ViewState["TotalEntries"] != null ? Convert.ToInt32(ViewState["TotalEntries"]) : 1;
+            }
+            set
+            {
+                ViewState["TotalEntries"] = value;
             }
         }
         private int TotalPages => (int)Math.Ceiling((double)TotalEntries / PageSize);
@@ -43,31 +53,51 @@ namespace WebApplication1
             using (OracleConnection connection = new OracleConnection(connString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Salarii_Angajati WHERE NUME LIKE :searchTerm";
 
-                if (!string.IsNullOrEmpty(sortExpression))
+                // Get total entries count
+                string countQuery = "SELECT COUNT(*) FROM Salarii_Angajati WHERE NUME LIKE :searchTerm";
+                using (OracleCommand countCommand = new OracleCommand(countQuery, connection))
                 {
-                    query += $" ORDER BY {sortExpression}";
+                    countCommand.Parameters.Add(":searchTerm", $"%{searchTerm}%");
+                    TotalEntries = Convert.ToInt32(countCommand.ExecuteScalar());
                 }
+
+                // Calculate the starting row and the number of rows to fetch
+                int startRow = (CurrentPage - 1) * PageSize + 1;
+                int endRow = CurrentPage * PageSize;
+
+                // Build the query with pagination
+                string query = @"
+                    SELECT * FROM (
+                        SELECT 
+                            Salarii_Angajati.*, 
+                            ROW_NUMBER() OVER (ORDER BY NR_CRT) AS row_num 
+                        FROM Salarii_Angajati 
+                        WHERE UPPER(NUME) LIKE UPPER(:searchTerm)
+                    ) 
+                    WHERE row_num BETWEEN :startRow AND :endRow";
 
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     command.Parameters.Add(":searchTerm", $"%{searchTerm}%");
+                    command.Parameters.Add(":startRow", startRow);
+                    command.Parameters.Add(":endRow", endRow);
+                    
                     using (OracleDataAdapter adapter = new OracleDataAdapter(command))
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
                         gvEmployees.DataSource = dt;
                         gvEmployees.DataBind();
-
-                        // Update TotalEntries with the row count
-                        TotalEntries = dt.Rows.Count;
+                        
                     }
                 }
+
             }
         }
         private void UpdatePaginationControls()
         {
+            
             PageNumberTextbox.Text = CurrentPage.ToString();
             PreviousPageButton.Enabled = CurrentPage > 1;
             NextPageButton.Enabled = CurrentPage < TotalPages;

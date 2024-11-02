@@ -22,23 +22,38 @@
             <button id="prevPageBtn" class="btn btn-outline-secondary me-1">&larr;</button>
             <button id="nextPageBtn" class="btn btn-outline-secondary">&rarr;</button>
         </div>--%>
-        <asp:Panel id="PaginationPanel" runat="server" cssclass="d-flex justify-content-end mb-3">
-            <asp:DropDownList ID="PageSizeDropdown" runat="server" CssClass="form-select me-2" AutoPostBack="true" OnSelectedIndexChanged="PageSizeDropdown_SelectedIndexChanged">
-                <asp:ListItem Text="5" Value="5" />
-                <asp:ListItem Text="20" Value="20" />
-                <asp:ListItem Text="50" Value="50" />
-            </asp:DropDownList>
-            <asp:TextBox ID="PageNumberTextbox" runat="server" CssClass="form-control me-2" Text="1" OnTextChanged="PageNumberTextbox_TextChanged" AutoPostBack="true" type="number" min="1" />
-            <asp:Button ID="PreviousPageButton" runat="server" CssClass="btn btn-primary me-1" Text="&laquo;" OnClick="PreviousPageButton_Click" />
-            <asp:Button ID="NextPageButton" runat="server" CssClass="btn btn-primary" Text="&raquo;" OnClick="NextPageButton_Click" />
+        <asp:Panel ID="PaginationPanel" runat="server" CssClass="d-flex justify-content-end mb-3">
+            <div class="d-flex align-items-center">
+                <asp:Label ID="lblEntriesDropdown" runat="server" Text="Rows per page:" CssClass="me-2" />
+                <asp:DropDownList ID="PageSizeDropdown" runat="server" CssClass="form-select me-2" 
+                                    AutoPostBack="true" OnSelectedIndexChanged="PageSizeDropdown_SelectedIndexChanged" 
+                                    style="width: 80px;"> 
+                    <asp:ListItem Text="5" Value="5" />
+                    <asp:ListItem Text="20" Value="20" />
+                    <asp:ListItem Text="50" Value="50" />
+                </asp:DropDownList>
+
+                <asp:TextBox ID="PageNumberTextbox" runat="server" CssClass="form-control me-2" 
+                             Text="1" OnTextChanged="PageNumberTextbox_TextChanged" 
+                             AutoPostBack="true" type="number" min="1" 
+                             style="width: 60px;" /> 
+
+                <asp:Button ID="PreviousPageButton" runat="server" CssClass="btn btn-primary me-1" 
+                             Text="&laquo;" OnClick="PreviousPageButton_Click" />
+
+                <asp:Button ID="NextPageButton" runat="server" CssClass="btn btn-primary me-2" 
+                             Text="&raquo;" OnClick="NextPageButton_Click"  />
+            </div>
+    
+            
         </asp:Panel>
         <asp:gridview id="gvEmployees" runat="server" autogeneratecolumns="False"
             allowsorting="True" onsorting="gvEmployees_Sorting"
-            allowpaging="True"
+            allowpaging="False"
             onpageindexchanging="gvEmployees_PageIndexChanging"
             datakeynames="NR_CRT">
         <Columns>
-            <asp:BoundField DataField="NR_CRT" HeaderText="ID Angajat" ReadOnly="True" />
+            <asp:BoundField DataField="NR_CRT" HeaderText="ID" ReadOnly="True" />
             <asp:BoundField DataField="NUME" HeaderText="Nume" />
             <asp:BoundField DataField="PRENUME" HeaderText="Prenume" />
             <asp:BoundField DataField="FUNCTIE" HeaderText="Funcție" />
