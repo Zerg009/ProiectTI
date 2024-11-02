@@ -1,0 +1,54 @@
+﻿DROP TABLE Salarii_Angajati;
+DROP TABLE Parametri_Financiari;
+
+CREATE TABLE Salarii_Angajati (
+    NR_CRT INTEGER NOT NULL,                       
+    NUME VARCHAR2(50) NOT NULL,                   
+    PRENUME VARCHAR2(50) NOT NULL,                
+    FUNCTIE VARCHAR2(50) NOT NULL,                
+    SALAR_BAZA INTEGER NOT NULL,            
+    SPOR INTEGER DEFAULT 0,                   
+    PREMII_BRUTE INTEGER DEFAULT 0,         
+    TOTAL_BRUT INTEGER,  
+    BRUT_IMPOZABIL INTEGER,   
+    CAS INTEGER,  
+    CASS INTEGER, 
+    IMPOZIT INTEGER,  
+    RETINERI INTEGER DEFAULT 0,             
+    VIRAT_CARD INTEGER,  
+    POZA BLOB,
+    CONSTRAINT pk_salarii PRIMARY KEY (NR_CRT)
+);
+CREATE TABLE Parametri_Financiari (
+    ID INTEGER PRIMARY KEY,
+    CAS_PENSIE NUMBER(3, 2) DEFAULT 0.25,
+    CASS_SANTATE NUMBER(3, 2) DEFAULT 0.10,
+    IMPOZIT NUMBER(3, 2) DEFAULT 0.10,
+    PAROLA_CRIPTATA VARCHAR2(255)      
+);
+
+CREATE SEQUENCE salarii_seq
+START WITH 1
+INCREMENT BY 1;
+
+
+CREATE OR REPLACE TRIGGER trg_salarii_before_insert
+BEFORE INSERT ON Salarii_Angajati
+FOR EACH ROW
+BEGIN
+    :new.NR_CRT := salarii_seq.NEXTVAL;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE Update_Salar_Values AS
+BEGIN
+    UPDATE Salarii_Angajati
+    SET 
+        TOTAL_BRUT = SALAR_BAZA * (1 + SPOR / 100) + PREMII_BRUTE,
+        CAS = TOTAL_BRUT * (SELECT CAS_PENSIE FROM Configurari_Financiare WHERE ID = 1),
+        CASS = TOTAL_BRUT * (SELECT CASS_SANTATE FROM Configurari_Financiare WHERE ID = 1),
+        BRUT_IMPOZABIL = TOTAL_BRUT - CAS - CASS,
+        IMPOZIT = BRUT_IMPOZABIL * (SELECT IMPOZIT FROM Configurari_Financiare WHERE ID = 1),
+        VIRAT_CARD = TOTAL_BRUT - IMPOZIT - CAS - CASS - RETINERI;
+END;
+/

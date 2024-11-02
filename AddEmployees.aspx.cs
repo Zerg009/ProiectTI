@@ -13,6 +13,7 @@ namespace WebApplication1
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -75,7 +76,7 @@ namespace WebApplication1
         }
         private void BindGrid()
         {
-            string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
+            //string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
             using (OracleConnection conn = new OracleConnection(connString))
             {
                 using (OracleCommand cmd = new OracleCommand("SELECT nume, prenume, salar_baza FROM salarii_angajati", conn))
@@ -118,6 +119,32 @@ namespace WebApplication1
 
             // Now you can process the selectedRows list as needed
             // For example, display the selected names in a label or process them further
+        }
+        protected void UpdateEmployeeSalary(int nrCrt)
+        {
+            //string connectionString = "Your Connection String Here";
+
+            using (OracleConnection connection = new OracleConnection(connString))
+            {
+                connection.Open();
+
+                using (OracleCommand command = new OracleCommand("Update_Salar_Values", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("p_nr_crt", OracleDbType.Int32).Value = nrCrt;
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Employee salary updated successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No changes were made.");
+                    }
+                }
+            }
         }
     }
 }

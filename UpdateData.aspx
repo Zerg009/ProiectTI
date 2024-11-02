@@ -3,33 +3,92 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="NR_CRT"
-        DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True"
-        OnPageIndexChanging="GridView1_PageIndexChanging" OnSorting="GridView1_Sorting"
-        OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"
-        OnRowCancelingEdit="GridView1_RowCancelingEdit">
+    <div>
+        <asp:textbox id="txtSearch" runat="server" placeholder="Căutare..."></asp:textbox>
+        <asp:button id="btnSearch" runat="server" text="Caută" onclick="btnSearch_Click" />
+        <asp:button id="btnSaveAll" runat="server" text="Salvează Tot" onclick="btnSaveAll_Click" />
+        <%--<div class="d-flex justify-content-end align-items-center mb-3">
+            <!-- Dropdown for selecting page size -->
+            <select id="pageSizeDropdown" class="form-select me-2" style="width: auto;">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+            </select>
 
+            <!-- Input for page number -->
+            <input type="number" id="pageInput" class="form-control me-2" placeholder="Page" style="width: 80px;" min="1">
+
+            <!-- Navigation arrows -->
+            <button id="prevPageBtn" class="btn btn-outline-secondary me-1">&larr;</button>
+            <button id="nextPageBtn" class="btn btn-outline-secondary">&rarr;</button>
+        </div>--%>
+        <asp:Panel id="PaginationPanel" runat="server" cssclass="d-flex justify-content-end mb-3">
+            <asp:DropDownList ID="PageSizeDropdown" runat="server" CssClass="form-select me-2" AutoPostBack="true" OnSelectedIndexChanged="PageSizeDropdown_SelectedIndexChanged">
+                <asp:ListItem Text="5" Value="5" />
+                <asp:ListItem Text="20" Value="20" />
+                <asp:ListItem Text="50" Value="50" />
+            </asp:DropDownList>
+            <asp:TextBox ID="PageNumberTextbox" runat="server" CssClass="form-control me-2" Text="1" OnTextChanged="PageNumberTextbox_TextChanged" AutoPostBack="true" type="number" min="1" />
+            <asp:Button ID="PreviousPageButton" runat="server" CssClass="btn btn-primary me-1" Text="&laquo;" OnClick="PreviousPageButton_Click" />
+            <asp:Button ID="NextPageButton" runat="server" CssClass="btn btn-primary" Text="&raquo;" OnClick="NextPageButton_Click" />
+        </asp:Panel>
+        <asp:gridview id="gvEmployees" runat="server" autogeneratecolumns="False"
+            allowsorting="True" onsorting="gvEmployees_Sorting"
+            allowpaging="True"
+            onpageindexchanging="gvEmployees_PageIndexChanging"
+            datakeynames="NR_CRT">
         <Columns>
-            <asp:BoundField DataField="NR_CRT" HeaderText="NR_CRT" ReadOnly="True" SortExpression="NR_CRT" />
-            <asp:BoundField DataField="NUME" HeaderText="NUME" SortExpression="NUME" />
-            <asp:BoundField DataField="PRENUME" HeaderText="PRENUME" SortExpression="PRENUME" />
-            <asp:BoundField DataField="VIRAT_CARD" HeaderText="VIRAT_CARD" SortExpression="VIRAT_CARD" />
-            <asp:CommandField ShowEditButton="True" />
+            <asp:BoundField DataField="NR_CRT" HeaderText="ID Angajat" ReadOnly="True" />
+            <asp:BoundField DataField="NUME" HeaderText="Nume" />
+            <asp:BoundField DataField="PRENUME" HeaderText="Prenume" />
+            <asp:BoundField DataField="FUNCTIE" HeaderText="Funcție" />
+            <asp:TemplateField HeaderText="Salariul de Bază">
+                <ItemTemplate>
+                    <asp:TextBox ID="txtSALAR_BAZA" runat="server" Text='<%# Bind("SALAR_BAZA") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Bonus %">
+                <ItemTemplate>
+                    <asp:TextBox ID="txtSPOR" runat="server" Text='<%# Bind("SPOR") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Premii Brute">
+                <ItemTemplate>
+                    <asp:TextBox ID="txtPREMII_BRUTE" runat="server" Text='<%# Bind("PREMII_BRUTE") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Total Brut">
+                <ItemTemplate>
+                    <asp:Label ID="lblTOTAL_BRUT" runat="server" Text='<%# Eval("TOTAL_BRUT") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Brut Impozabil">
+                <ItemTemplate>
+                    <asp:Label ID="lblBRUT_IMPOZABIL" runat="server" Text='<%# Eval("BRUT_IMPOZABIL") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="CAS">
+                <ItemTemplate>
+                    <asp:Label ID="lblCAS" runat="server" Text='<%# Eval("CAS") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="CASS">
+                <ItemTemplate>
+                    <asp:Label ID="lblCASS" runat="server" Text='<%# Eval("CASS") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Impozit">
+                <ItemTemplate>
+                    <asp:Label ID="lblIMPOZIT" runat="server" Text='<%# Eval("IMPOZIT") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Retineri">
+                <ItemTemplate>
+                    <asp:TextBox ID="txtRETINERI" runat="server" Text='<%# Bind("RETINERI") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="VIRAT_CARD" HeaderText="Virat Card" ReadOnly="True" />
         </Columns>
-    </asp:GridView>
-
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"
-        ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT NR_CRT, NUME, PRENUME, VIRAT_CARD FROM SALARII_ANGAJATI"
-        UpdateCommand="UPDATE SALARII_ANGAJATI SET NUME=@NUME, PRENUME=@PRENUME, VIRAT_CARD=@VIRAT_CARD WHERE NR_CRT=@NR_CRT">
-
-
-        <UpdateParameters>
-            <asp:Parameter Name="NR_CRT" Type="Int32" />
-            <asp:Parameter Name="NUME" Type="String" />
-            <asp:Parameter Name="PRENUME" Type="String" />
-            <asp:Parameter Name="VIRAT_CARD" Type="String" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
+    </asp:gridview>
+    </div>
 </asp:Content>
