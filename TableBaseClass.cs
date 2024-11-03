@@ -61,19 +61,28 @@ namespace WebApplication1
             {
                 connection.Open();
 
-                // Get total entries count
-                string countQuery = "SELECT COUNT(*) FROM Salarii_Angajati WHERE NUME LIKE :searchTerm";
+     
+                string countQuery = "SELECT COUNT(*) FROM Salarii_Angajati WHERE UPPER(NUME) LIKE UPPER(:searchTerm) OR UPPER(PRENUME) LIKE UPPER(:searchTerm)";
                 using (OracleCommand countCommand = new OracleCommand(countQuery, connection))
                 {
+                    countCommand.BindByName = true;
                     countCommand.Parameters.Add(":searchTerm", $"%{searchTerm}%");
                     TotalEntries = Convert.ToInt32(countCommand.ExecuteScalar());
                 }
 
-                // Calculate the starting row and the number of rows to fetch
-                int startRow = (CurrentPage - 1) * PageSize + 1;
-                int endRow = CurrentPage * PageSize;
 
-                // Build the query with pagination
+                if (!string.IsNullOrEmpty(searchTerm) || TotalEntries == 0)
+                {
+                    CurrentPage = 1;
+                    txtPageNumber.Text = CurrentPage.ToString();
+                    UpdatePaginationControls();
+                }
+
+                
+                int startRow = (CurrentPage - 1) * PageSize + 1;
+                int endRow = Math.Min(CurrentPage * PageSize, TotalEntries);
+
+                
                 string query = @"
                     SELECT * FROM (
                         SELECT 
@@ -100,8 +109,8 @@ namespace WebApplication1
 
                     }
                 }
-
             }
+            UpdatePaginationControls();
         }
         private void UpdatePaginationControls()
         {
