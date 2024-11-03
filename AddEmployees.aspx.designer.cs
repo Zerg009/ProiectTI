@@ -13,67 +13,112 @@ namespace WebApplication1 {
     public partial class WebForm2 {
         
         /// <summary>
-        /// lblMessage control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// lblNume control.
+        /// revName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNume;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revName;
         
         /// <summary>
-        /// txtNume control.
+        /// cvNameLength control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNume;
+        protected global::System.Web.UI.WebControls.CustomValidator cvNameLength;
         
         /// <summary>
-        /// lblPrenume control.
+        /// txtSurname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrenume;
+        protected global::System.Web.UI.WebControls.TextBox txtSurname;
         
         /// <summary>
-        /// txtPrenume control.
+        /// revSurname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrenume;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revSurname;
         
         /// <summary>
-        /// lblSalariu control.
+        /// cvSurnameLength control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSalariu;
+        protected global::System.Web.UI.WebControls.CustomValidator cvSurnameLength;
         
         /// <summary>
-        /// txtSalariu control.
+        /// ddlPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSalariu;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPosition;
+        
+        /// <summary>
+        /// txtBaseSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBaseSalary;
+        
+        /// <summary>
+        /// txtSpor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSpor;
+        
+        /// <summary>
+        /// rvSpor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvSpor;
+        
+        /// <summary>
+        /// txtGrossBonuses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGrossBonuses;
+        
+        /// <summary>
+        /// txtRetineri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRetineri;
         
         /// <summary>
         /// btnAddEmployee control.
@@ -85,21 +130,12 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Button btnAddEmployee;
         
         /// <summary>
-        /// GridView1 control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// btnProcessSelection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProcessSelection;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }

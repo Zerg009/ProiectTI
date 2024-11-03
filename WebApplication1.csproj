@@ -107,7 +107,10 @@
     <Content Include="libs\bootstrap.min.css" />
     <Content Include="libs\bootstrap.min.js" />
     <Content Include="libs\fontawesome.min.css" />
+    <Content Include="libs\jquery-3.7.1.min.js" />
     <Content Include="libs\jquery-3.7.1.slim.min.js" />
+    <Content Include="libs\jquery.validate.min.js" />
+    <Content Include="libs\jquery.validate.unobtrusive.js" />
     <Content Include="libs\popper.min.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">

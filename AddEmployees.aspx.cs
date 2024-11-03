@@ -18,133 +18,96 @@ namespace WebApplication1
         {
             if (!IsPostBack)
             {
-                BindGrid();
+                InitFunctionsDropdown();
+            }
+        }
+        private void InitFunctionsDropdown()
+        {
+            List<string> functions = new List<string>
+            {
+                "Manager",
+                "Engineer",
+                "HR Specialist",
+                "Accountant",
+                "Technician",
+                "Sales Representative",
+                "Marketing Specialist",
+                "Product Designer",
+                "Data Analyst",
+                "Customer Support Agent"
+            };
+
+            ddlPosition.Items.Clear();
+            foreach (var function in functions)
+            {
+                ddlPosition.Items.Add(new ListItem(function));
             }
         }
         protected void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            // Get values from the form
+            string name = txtName.Text.Trim();
+            string surname = txtSurname.Text.Trim();
+            string position = ddlPosition.SelectedValue;
+            int baseSalary = int.Parse(txtBaseSalary.Text.Trim());
+            int spor = int.Parse(txtSpor.Text.Trim());
+            int grossBonuses = int.Parse(txtGrossBonuses.Text.Trim());
+            int retineri = int.Parse(txtRetineri.Text.Trim()); // Retineri
 
-            // Get the employee details from the input fields
-            string nume = txtNume.Text.Trim();
-            string prenume = txtPrenume.Text.Trim();
-            string salariu = txtSalariu.Text.Trim();
-
-            // SQL Insert query
-            string query = "INSERT INTO SALARII_ANGAJATI (NUME, PRENUME, SALARIU) VALUES (@NUME, @PRENUME, @SALARIU)";
-
-            // Connect to the database and execute the query
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // Prepare the SQL insert statement
+            string insertQuery = "INSERT INTO Salarii_Angajati (NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMII_BRUTE, RETINERI) " +
+                     "VALUES (:name, :surname, :position, :baseSalary, :spor, :grossBonuses, :retineri)";
+            try
             {
-                try
+                using (OracleConnection conn = new OracleConnection(connString))
                 {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (OracleCommand cmd = new OracleCommand(insertQuery, conn))
                     {
-                        // Add parameters to prevent SQL injection
-                        cmd.Parameters.AddWithValue("@NUME", nume);
-                        cmd.Parameters.AddWithValue("@PRENUME", prenume);
-                        cmd.Parameters.AddWithValue("@SALARIU", salariu);
+                        // Add parameters
+                        cmd.Parameters.Add(new OracleParameter(":name", name));
+                        cmd.Parameters.Add(new OracleParameter(":surname", surname));
+                        cmd.Parameters.Add(new OracleParameter(":position", position));
+                        cmd.Parameters.Add(new OracleParameter(":baseSalary", baseSalary));
+                        cmd.Parameters.Add(new OracleParameter(":spor", spor));
+                        cmd.Parameters.Add(new OracleParameter(":grossBonuses", grossBonuses));
+                        cmd.Parameters.Add(new OracleParameter(":retineri", retineri));
 
-                        // Execute the query
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        // Check if the insert was successful
-                        if (rowsAffected > 0)
-                        {
-                            lblMessage.Text = "Employee added successfully!";
-                            lblMessage.ForeColor = System.Drawing.Color.Green;
-                        }
-                        else
-                        {
-                            lblMessage.Text = "Failed to add employee.";
-                            lblMessage.ForeColor = System.Drawing.Color.Red;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lblMessage.Text = "Error: " + ex.Message;
-                    lblMessage.ForeColor = System.Drawing.Color.Red;
-                }
-            }
-
-            // Optionally, clear the form fields after submission
-            txtNume.Text = "";
-            txtPrenume.Text = "";
-            txtSalariu.Text = "";
-        }
-        private void BindGrid()
-        {
-            //string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
-            using (OracleConnection conn = new OracleConnection(connString))
-            {
-                using (OracleCommand cmd = new OracleCommand("SELECT nume, prenume, salar_baza FROM salarii_angajati", conn))
-                {
-                    using (OracleDataAdapter da = new OracleDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        GridView1.DataSource = dt;
-                        GridView1.DataBind();
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        lblMessage.Text = "Angajat adăugat cu succes!"; // Success message
                     }
                 }
             }
-        }
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedRowIndex = GridView1.SelectedIndex;
-            string column1Value = GridView1.SelectedRow.Cells[1].Text;  // Adjust column index as needed
-
-            // Example: Perform actions based on selected row data
-            // Manipulate the data in the selected row here
-        }
-        protected void btnProcessSelection_Click(object sender, EventArgs e)
-        {
-            List<string> selectedRows = new List<string>();
-
-            foreach (GridViewRow row in GridView1.Rows)
+            catch (Exception ex)
             {
-                // Find the CheckBox control
-                CheckBox chkSelect = (CheckBox)row.FindControl("CheckBoxSelect");
-
-                // Check if the CheckBox is checked
-                if (chkSelect != null && chkSelect.Checked)
-                {
-                    // Assuming you want to collect the 'nume' column value as an example
-                    string nume = row.Cells[1].Text; // Adjust the index based on your columns
-                    selectedRows.Add(nume);
-                }
+                lblMessage.Text = "Eroare la adăugarea angajatului: " + ex.Message; // Error message
+            }
+            finally
+            {
+                ClearForm(); // Clear the form fields
             }
 
-            // Now you can process the selectedRows list as needed
-            // For example, display the selected names in a label or process them further
+            // Clear the form after adding the employee
+            ClearForm();
         }
-        protected void UpdateEmployeeSalary(int nrCrt)
+        private void ClearForm()
         {
-            //string connectionString = "Your Connection String Here";
+            txtName.Text = "";
+            txtSurname.Text = "";
+            ddlPosition.SelectedIndex = 0; 
+            txtBaseSalary.Text = "";
+            txtSpor.Text = ""; 
+            txtGrossBonuses.Text = ""; 
+            txtRetineri.Text = "";
+        }
+        protected void ValidateNameLength(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = txtName.Text.Length <= 25;
+        }
 
-            using (OracleConnection connection = new OracleConnection(connString))
-            {
-                connection.Open();
-
-                using (OracleCommand command = new OracleCommand("Update_Salar_Values", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("p_nr_crt", OracleDbType.Int32).Value = nrCrt;
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        Console.WriteLine("Employee salary updated successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("No changes were made.");
-                    }
-                }
-            }
+        protected void ValidateSurnameLength(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = txtSurname.Text.Length <= 25;
         }
     }
 }

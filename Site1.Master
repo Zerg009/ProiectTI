@@ -69,9 +69,12 @@
 
 
 
-    <script src="libs/jquery-3.7.1.slim.min.js"></script>
+    <script src="libs/jquery-3.7.1.min.js"></script>
+    <script src="libs/jquery.validate.min.js"></script>
+    <script src="libs/jquery.validate.unobtrusive.js"></script>
     <script src="libs/bootstrap.bundle.min.js"></script>
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap.min.js"></script>
+    
 </body>
 </html>

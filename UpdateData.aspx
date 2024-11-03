@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-
-        <!-- Save Button -->
+        <%-- ADD FILTERING --%>
+        
         <div class="d-flex justify-content-end align-items-center mb-3">
             <asp:LinkButton ID="btnSaveAll" runat="server" CssClass="btn btn-success ms-3" OnClick="btnSaveAll_Click">
                 <i class="fas fa-save me-2"></i> Salvează
@@ -14,7 +14,6 @@
 
         <asp:Panel ID="PaginationPanel" runat="server" CssClass="mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <!-- Left-aligned search box -->
                 <div class="d-flex">
                     <div class="input-group me-1" style="width: 200px;">
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Căutare..." />
@@ -26,7 +25,6 @@
                     </div>
                 </div>
 
-                <!-- Right-aligned pagination controls -->
                 <div class="d-flex align-items-center">
                     <asp:Label ID="lblEntriesDropdown" runat="server" Text="Rows per page:" CssClass="me-2" />
                     <asp:DropDownList ID="PageSizeDropdown" runat="server" CssClass="form-select me-2"
