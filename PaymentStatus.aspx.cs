@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,11 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ReportDocument report = new ReportDocument();
+            string path = Server.MapPath("CrystalReport1.rpt");
+            report.Load(path);
+            //raport.SetDataSource(ds.Tables["tabela"]);
+            CrystalReportViewer1.ReportSource = report;
         }
     }
 }

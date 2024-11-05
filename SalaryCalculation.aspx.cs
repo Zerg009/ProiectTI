@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class WebForm4 : System.Web.UI.Page
+    public partial class WebForm4 : TableBaseClass
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected override DropDownList ddlPageSize => PageSizeDropdown;
+        protected override GridView gridViewEmployees => gvEmployees;
+        protected override TextBox txtPageNumber => PageNumberTextbox;
+        protected override TextBox textSearch => txtSearch;
+        protected override Button btnPreviousPage => PreviousPageButton;
+        protected override Button btnNextPage => NextPageButton;
 
-        }
     }
 }
