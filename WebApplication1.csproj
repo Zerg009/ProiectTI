@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\main.css" />
+    <Content Include="EmployeeTable.ascx" />
     <Content Include="homepage.aspx" />
     <Content Include="libs\all.css" />
     <Content Include="libs\bootstrap.bundle.min.js" />
@@ -137,6 +138,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeTable.ascx.cs">
+      <DependentUpon>EmployeeTable.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeTable.ascx.designer.cs">
+      <DependentUpon>EmployeeTable.ascx</DependentUpon>
+    </Compile>
     <Compile Include="homepage.aspx.cs">
       <DependentUpon>homepage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

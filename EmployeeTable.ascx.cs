@@ -1,25 +1,20 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
-using Oracle.ManagedDataAccess.Client;
-using System.Data;
-using System.Configuration;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public abstract class TableBaseClass : System.Web.UI.Page
+    public partial class EmployeeTable : System.Web.UI.UserControl
     {
         protected string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
-        protected abstract DropDownList ddlPageSize { get; }
-        protected abstract GridView gridViewEmployees { get; }
-        protected abstract TextBox txtPageNumber { get; }
-        protected abstract TextBox textSearch { get; }
-        protected abstract Button btnPreviousPage { get; }
-        protected abstract Button btnNextPage { get; }
 
-        private int PageSize => int.Parse(ddlPageSize.SelectedValue);
+        private int PageSize => int.Parse(PageSizeDropdown.SelectedValue);
 
         private int CurrentPage
         {
@@ -61,7 +56,7 @@ namespace WebApplication1
             {
                 connection.Open();
 
-     
+
                 string countQuery = "SELECT COUNT(*) FROM Salarii_Angajati WHERE UPPER(NUME) LIKE UPPER(:searchTerm) OR UPPER(PRENUME) LIKE UPPER(:searchTerm)";
                 using (OracleCommand countCommand = new OracleCommand(countQuery, connection))
                 {
@@ -74,15 +69,15 @@ namespace WebApplication1
                 if (!string.IsNullOrEmpty(searchTerm) || TotalEntries == 0)
                 {
                     CurrentPage = 1;
-                    txtPageNumber.Text = CurrentPage.ToString();
+                    PageNumberTextbox.Text = CurrentPage.ToString();
                     UpdatePaginationControls();
                 }
 
-                
+
                 int startRow = (CurrentPage - 1) * PageSize + 1;
                 int endRow = Math.Min(CurrentPage * PageSize, TotalEntries);
 
-                
+
                 string query = @"
                     SELECT * FROM (
                         SELECT 
@@ -104,8 +99,8 @@ namespace WebApplication1
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-                        gridViewEmployees.DataSource = dt;
-                        gridViewEmployees.DataBind();
+                        gvEmployees.DataSource = dt;
+                        gvEmployees.DataBind();
 
                     }
                 }
@@ -115,9 +110,9 @@ namespace WebApplication1
         private void UpdatePaginationControls()
         {
 
-            txtPageNumber.Text = CurrentPage.ToString();
-            btnPreviousPage.Enabled = CurrentPage > 1;
-            btnNextPage.Enabled = CurrentPage < TotalPages;
+            PageNumberTextbox.Text = CurrentPage.ToString();
+            PreviousPageButton.Enabled = CurrentPage > 1;
+            NextPageButton.Enabled = CurrentPage < TotalPages;
         }
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -129,7 +124,7 @@ namespace WebApplication1
         protected void txtPageNumber_TextChanged(object sender, EventArgs e)
         {
             int page;
-            if (int.TryParse(txtPageNumber.Text, out page) && page > 0 && page <= TotalPages)
+            if (int.TryParse(PageNumberTextbox.Text, out page) && page > 0 && page <= TotalPages)
             {
                 CurrentPage = page;
             }
@@ -163,35 +158,35 @@ namespace WebApplication1
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGrid(textSearch.Text.Trim());
+            BindGrid(txtSearch.Text.Trim());
         }
 
         protected void gridViewEmployees_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gridViewEmployees.PageIndex = e.NewPageIndex;
-            BindGrid(textSearch.Text.Trim());
+            gvEmployees.PageIndex = e.NewPageIndex;
+            BindGrid(txtSearch.Text.Trim());
         }
 
         protected void gridViewEmployees_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gridViewEmployees.EditIndex = e.NewEditIndex;
+            gvEmployees.EditIndex = e.NewEditIndex;
             BindGrid(); // Method to re-bind the data
         }
 
         protected void gridViewEmployees_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gridViewEmployees.EditIndex = -1;
-            BindGrid(textSearch.Text.Trim());
+            gvEmployees.EditIndex = -1;
+            BindGrid(txtSearch.Text.Trim());
         }
 
         protected void gridViewEmployees_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int nrCrt = Convert.ToInt32(gridViewEmployees.DataKeys[e.RowIndex].Value);
-            string nume = ((TextBox)gridViewEmployees.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
-            decimal salarBaza = Convert.ToDecimal(((TextBox)gridViewEmployees.Rows[e.RowIndex].Cells[2].Controls[0]).Text);
-            decimal spor = Convert.ToDecimal(((TextBox)gridViewEmployees.Rows[e.RowIndex].Cells[3].Controls[0]).Text);
-            decimal premiiBrute = Convert.ToDecimal(((TextBox)gridViewEmployees.Rows[e.RowIndex].Cells[4].Controls[0]).Text);
-            decimal retin = Convert.ToDecimal(((TextBox)gridViewEmployees.Rows[e.RowIndex].Cells[5].Controls[0]).Text);
+            int nrCrt = Convert.ToInt32(gvEmployees.DataKeys[e.RowIndex].Value);
+            string nume = ((TextBox)gvEmployees.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
+            decimal salarBaza = Convert.ToDecimal(((TextBox)gvEmployees.Rows[e.RowIndex].Cells[2].Controls[0]).Text);
+            decimal spor = Convert.ToDecimal(((TextBox)gvEmployees.Rows[e.RowIndex].Cells[3].Controls[0]).Text);
+            decimal premiiBrute = Convert.ToDecimal(((TextBox)gvEmployees.Rows[e.RowIndex].Cells[4].Controls[0]).Text);
+            decimal retin = Convert.ToDecimal(((TextBox)gvEmployees.Rows[e.RowIndex].Cells[5].Controls[0]).Text);
 
             using (OracleConnection connection = new OracleConnection(connString))
             {
@@ -208,21 +203,21 @@ namespace WebApplication1
                 }
             }
 
-            gridViewEmployees.EditIndex = -1;
-            BindGrid(textSearch.Text.Trim());
+            gvEmployees.EditIndex = -1;
+            BindGrid(txtSearch.Text.Trim());
         }
         protected void gridViewEmployees_Sorting(object sender, GridViewSortEventArgs e)
         {
             string sortDirection = ViewState["SortDirection"] != null && ViewState["SortDirection"].ToString() == "ASC" ? "DESC" : "ASC";
             ViewState["SortDirection"] = sortDirection;
 
-            BindGrid(textSearch.Text.Trim(), e.SortExpression + " " + sortDirection);
+            BindGrid(txtSearch.Text.Trim(), e.SortExpression + " " + sortDirection);
         }
 
 
         protected virtual void btnSaveAll_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gridViewEmployees.Rows)
+            foreach (GridViewRow row in gvEmployees.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
                 {
@@ -235,7 +230,7 @@ namespace WebApplication1
                     int spor = int.Parse(txtSpor.Text);
                     int premiiBrute = int.Parse(txtPremiiBrute.Text);
                     int retineri = int.Parse(txtRetineri.Text);
-                    int employeeId = Convert.ToInt32(gridViewEmployees.DataKeys[row.RowIndex].Value);
+                    int employeeId = Convert.ToInt32(gvEmployees.DataKeys[row.RowIndex].Value);
 
                     // Perform your database update logic here
                     using (var connection = new OracleConnection(connString))
@@ -256,7 +251,7 @@ namespace WebApplication1
 
                             command.ExecuteNonQuery();
                         }
-                        
+                        // Call the recalculation procedure immediately after the update
                         using (var commandRecalc = new OracleCommand(
                             "BEGIN Initiate_Recalculations(:employeeId); END;",
                             connection))
@@ -269,8 +264,7 @@ namespace WebApplication1
             }
 
 
-            BindGrid();
+            BindGrid(); // Refresh the GridView after saving changes
         }
-        
     }
 }

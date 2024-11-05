@@ -18,6 +18,40 @@ namespace WebApplication1
         protected override TextBox textSearch => txtSearch; 
         protected override Button btnPreviousPage => PreviousPageButton; 
         protected override Button btnNextPage => NextPageButton;
-       
+
+        protected override void btnSaveAll_Click(object sender, EventArgs e)
+        {
+            ValidatePage();
+
+
+            if (Page.IsValid)
+            {
+                base.btnSaveAll_Click(sender, e);
+            }
+        }
+
+
+        protected void ValidatePage()
+        {
+            Page.Validate(); // Trigger all validators
+            if (!Page.IsValid)
+            {
+                // Find the first invalid validator and display its error message
+                foreach (BaseValidator validator in Page.Validators)
+                {
+                    if (!validator.IsValid)
+                    {
+                        lblMessage.Text = validator.ErrorMessage; // Display only the first error message
+                        break; // Exit the loop after the first invalid validator
+                    }
+                }
+            }
+            else
+            {
+                lblMessage.Text = ""; // Clear the error message if validation passes
+                                      // Proceed with save logic
+            }
+        }
+
     }
 }
