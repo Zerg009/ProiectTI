@@ -128,3 +128,17 @@ body {
     width: 100%; /* Ensure labels take full width */
     box-sizing: border-box; /* Include padding and borders in width */
 }
+.employee-photo {
+    width: 200px; /* Fixed width to create a square shape */
+    height: 200px; /* Fixed height to match width */
+    border-radius: 50%; /* Circular photo */
+    margin-bottom: 20px;
+    object-fit: cover; /* Ensures the image fills the circle and stays centered */
+    overflow: hidden; /* Hides any overflow to ensure the circular shape */
+}
+
+.employee-details p {
+    font-size: 1.1em;
+    margin: 5px 0;
+    color: #333;
+}

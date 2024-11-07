@@ -279,6 +279,8 @@ namespace WebApplication1 {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SALARII_ANGAJATIDataTable : global::System.Data.TypedTableBase<SALARII_ANGAJATIRow> {
             
+            private global::System.Data.DataColumn columnVIRAT_CARD;
+            
             private global::System.Data.DataColumn columnNR_CRT;
             
             private global::System.Data.DataColumn columnNUME;
@@ -304,8 +306,6 @@ namespace WebApplication1 {
             private global::System.Data.DataColumn columnIMPOZIT;
             
             private global::System.Data.DataColumn columnRETINERI;
-            
-            private global::System.Data.DataColumn columnVIRAT_CARD;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -338,6 +338,14 @@ namespace WebApplication1 {
             protected SALARII_ANGAJATIDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VIRAT_CARDColumn {
+                get {
+                    return this.columnVIRAT_CARD;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -446,14 +454,6 @@ namespace WebApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VIRAT_CARDColumn {
-                get {
-                    return this.columnVIRAT_CARD;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,9 +489,10 @@ namespace WebApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SALARII_ANGAJATIRow AddSALARII_ANGAJATIRow(decimal NR_CRT, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, decimal SPOR, decimal PREMII_BRUTE, decimal TOTAL_BRUT, decimal BRUT_IMPOZABIL, decimal CAS, decimal CASS, decimal IMPOZIT, decimal RETINERI, decimal VIRAT_CARD) {
+            public SALARII_ANGAJATIRow AddSALARII_ANGAJATIRow(decimal VIRAT_CARD, decimal NR_CRT, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, decimal SPOR, decimal PREMII_BRUTE, decimal TOTAL_BRUT, decimal BRUT_IMPOZABIL, decimal CAS, decimal CASS, decimal IMPOZIT, decimal RETINERI) {
                 SALARII_ANGAJATIRow rowSALARII_ANGAJATIRow = ((SALARII_ANGAJATIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        VIRAT_CARD,
                         NR_CRT,
                         NUME,
                         PRENUME,
@@ -504,8 +505,7 @@ namespace WebApplication1 {
                         CAS,
                         CASS,
                         IMPOZIT,
-                        RETINERI,
-                        VIRAT_CARD};
+                        RETINERI};
                 rowSALARII_ANGAJATIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSALARII_ANGAJATIRow);
                 return rowSALARII_ANGAJATIRow;
@@ -535,6 +535,7 @@ namespace WebApplication1 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnVIRAT_CARD = base.Columns["VIRAT_CARD"];
                 this.columnNR_CRT = base.Columns["NR_CRT"];
                 this.columnNUME = base.Columns["NUME"];
                 this.columnPRENUME = base.Columns["PRENUME"];
@@ -548,12 +549,13 @@ namespace WebApplication1 {
                 this.columnCASS = base.Columns["CASS"];
                 this.columnIMPOZIT = base.Columns["IMPOZIT"];
                 this.columnRETINERI = base.Columns["RETINERI"];
-                this.columnVIRAT_CARD = base.Columns["VIRAT_CARD"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnVIRAT_CARD = new global::System.Data.DataColumn("VIRAT_CARD", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVIRAT_CARD);
                 this.columnNR_CRT = new global::System.Data.DataColumn("NR_CRT", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNR_CRT);
                 this.columnNUME = new global::System.Data.DataColumn("NUME", typeof(string), null, global::System.Data.MappingType.Element);
@@ -580,8 +582,6 @@ namespace WebApplication1 {
                 base.Columns.Add(this.columnIMPOZIT);
                 this.columnRETINERI = new global::System.Data.DataColumn("RETINERI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRETINERI);
-                this.columnVIRAT_CARD = new global::System.Data.DataColumn("VIRAT_CARD", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVIRAT_CARD);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnNR_CRT}, true));
                 this.columnNR_CRT.AllowDBNull = false;
@@ -731,6 +731,22 @@ namespace WebApplication1 {
             internal SALARII_ANGAJATIRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableSALARII_ANGAJATI = ((SALARII_ANGAJATIDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal VIRAT_CARD {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSALARII_ANGAJATI.VIRAT_CARDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VIRAT_CARD\' in table \'SALARII_ANGAJATI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSALARII_ANGAJATI.VIRAT_CARDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -918,18 +934,14 @@ namespace WebApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal VIRAT_CARD {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSALARII_ANGAJATI.VIRAT_CARDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VIRAT_CARD\' in table \'SALARII_ANGAJATI\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSALARII_ANGAJATI.VIRAT_CARDColumn] = value;
-                }
+            public bool IsVIRAT_CARDNull() {
+                return this.IsNull(this.tableSALARII_ANGAJATI.VIRAT_CARDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVIRAT_CARDNull() {
+                this[this.tableSALARII_ANGAJATI.VIRAT_CARDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1026,18 +1038,6 @@ namespace WebApplication1 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRETINERINull() {
                 this[this.tableSALARII_ANGAJATI.RETINERIColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVIRAT_CARDNull() {
-                return this.IsNull(this.tableSALARII_ANGAJATI.VIRAT_CARDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVIRAT_CARDNull() {
-                this[this.tableSALARII_ANGAJATI.VIRAT_CARDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1200,6 +1200,7 @@ namespace WebApplication1.DataSet1TableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "SALARII_ANGAJATI";
+            tableMapping.ColumnMappings.Add("VIRAT_CARD", "VIRAT_CARD");
             tableMapping.ColumnMappings.Add("NR_CRT", "NR_CRT");
             tableMapping.ColumnMappings.Add("NUME", "NUME");
             tableMapping.ColumnMappings.Add("PRENUME", "PRENUME");
@@ -1213,7 +1214,6 @@ namespace WebApplication1.DataSet1TableAdapters {
             tableMapping.ColumnMappings.Add("CASS", "CASS");
             tableMapping.ColumnMappings.Add("IMPOZIT", "IMPOZIT");
             tableMapping.ColumnMappings.Add("RETINERI", "RETINERI");
-            tableMapping.ColumnMappings.Add("VIRAT_CARD", "VIRAT_CARD");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Oracle.ManagedDataAccess.Client.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1230,8 +1230,16 @@ namespace WebApplication1.DataSet1TableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Oracle.ManagedDataAccess.Client.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""STUDENT"".""SALARII_ANGAJATI"" (""NR_CRT"", ""NUME"", ""PRENUME"", ""FUNCTIE"", ""SALAR_BAZA"", ""SPOR"", ""PREMII_BRUTE"", ""TOTAL_BRUT"", ""BRUT_IMPOZABIL"", ""CAS"", ""CASS"", ""IMPOZIT"", ""RETINERI"", ""VIRAT_CARD"") VALUES (:NR_CRT, :NUME, :PRENUME, :FUNCTIE, :SALAR_BAZA, :SPOR, :PREMII_BRUTE, :TOTAL_BRUT, :BRUT_IMPOZABIL, :CAS, :CASS, :IMPOZIT, :RETINERI, :VIRAT_CARD)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""STUDENT"".""SALARII_ANGAJATI"" (""VIRAT_CARD"", ""NR_CRT"", ""NUME"", ""PRENUME"", ""FUNCTIE"", ""SALAR_BAZA"", ""SPOR"", ""PREMII_BRUTE"", ""TOTAL_BRUT"", ""BRUT_IMPOZABIL"", ""CAS"", ""CASS"", ""IMPOZIT"", ""RETINERI"") VALUES (:VIRAT_CARD, :NR_CRT, :NUME, :PRENUME, :FUNCTIE, :SALAR_BAZA, :SPOR, :PREMII_BRUTE, :TOTAL_BRUT, :BRUT_IMPOZABIL, :CAS, :CASS, :IMPOZIT, :RETINERI)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
+            param.ParameterName = "VIRAT_CARD";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.ManagedDataAccess.Client.OracleDbType.Decimal;
+            param.Size = 22;
+            param.IsNullable = true;
+            param.SourceColumn = "VIRAT_CARD";
+            this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
             param.ParameterName = "NR_CRT";
             param.DbType = global::System.Data.DbType.Decimal;
@@ -1332,19 +1340,19 @@ namespace WebApplication1.DataSet1TableAdapters {
             param.Size = 22;
             param.IsNullable = true;
             param.SourceColumn = "RETINERI";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
-            param.ParameterName = "VIRAT_CARD";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.OracleDbTypeEx = global::Oracle.ManagedDataAccess.Client.OracleDbType.Decimal;
-            param.Size = 22;
-            param.IsNullable = true;
-            param.SourceColumn = "VIRAT_CARD";
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Oracle.ManagedDataAccess.Client.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""STUDENT"".""SALARII_ANGAJATI"" SET ""NR_CRT"" = :NR_CRT, ""NUME"" = :NUME, ""PRENUME"" = :PRENUME, ""FUNCTIE"" = :FUNCTIE, ""SALAR_BAZA"" = :SALAR_BAZA, ""SPOR"" = :SPOR, ""PREMII_BRUTE"" = :PREMII_BRUTE, ""TOTAL_BRUT"" = :TOTAL_BRUT, ""BRUT_IMPOZABIL"" = :BRUT_IMPOZABIL, ""CAS"" = :CAS, ""CASS"" = :CASS, ""IMPOZIT"" = :IMPOZIT, ""RETINERI"" = :RETINERI, ""VIRAT_CARD"" = :VIRAT_CARD WHERE ((""NR_CRT"" = :Original_NR_CRT))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""STUDENT"".""SALARII_ANGAJATI"" SET ""VIRAT_CARD"" = :VIRAT_CARD, ""NR_CRT"" = :NR_CRT, ""NUME"" = :NUME, ""PRENUME"" = :PRENUME, ""FUNCTIE"" = :FUNCTIE, ""SALAR_BAZA"" = :SALAR_BAZA, ""SPOR"" = :SPOR, ""PREMII_BRUTE"" = :PREMII_BRUTE, ""TOTAL_BRUT"" = :TOTAL_BRUT, ""BRUT_IMPOZABIL"" = :BRUT_IMPOZABIL, ""CAS"" = :CAS, ""CASS"" = :CASS, ""IMPOZIT"" = :IMPOZIT, ""RETINERI"" = :RETINERI WHERE ((""NR_CRT"" = :Original_NR_CRT))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
+            param.ParameterName = "VIRAT_CARD";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.ManagedDataAccess.Client.OracleDbType.Decimal;
+            param.Size = 22;
+            param.IsNullable = true;
+            param.SourceColumn = "VIRAT_CARD";
+            this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
             param.ParameterName = "NR_CRT";
             param.DbType = global::System.Data.DbType.Decimal;
@@ -1445,14 +1453,6 @@ namespace WebApplication1.DataSet1TableAdapters {
             param.Size = 22;
             param.IsNullable = true;
             param.SourceColumn = "RETINERI";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
-            param.ParameterName = "VIRAT_CARD";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.OracleDbTypeEx = global::Oracle.ManagedDataAccess.Client.OracleDbType.Decimal;
-            param.Size = 22;
-            param.IsNullable = true;
-            param.SourceColumn = "VIRAT_CARD";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Oracle.ManagedDataAccess.Client.OracleParameter();
             param.ParameterName = "Original_NR_CRT";
@@ -1478,8 +1478,8 @@ namespace WebApplication1.DataSet1TableAdapters {
             this._commandCollection = new global::Oracle.ManagedDataAccess.Client.OracleCommand[1];
             this._commandCollection[0] = new global::Oracle.ManagedDataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        NR_CRT, NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMII_BRUTE, TOT" +
-                "AL_BRUT, BRUT_IMPOZABIL, CAS, CASS, IMPOZIT, RETINERI, VIRAT_CARD\r\nFROM         " +
+            this._commandCollection[0].CommandText = "SELECT        VIRAT_CARD, NR_CRT, NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMI" +
+                "I_BRUTE, TOTAL_BRUT, BRUT_IMPOZABIL, CAS, CASS, IMPOZIT, RETINERI\r\nFROM         " +
                 "   STUDENT.SALARII_ANGAJATI";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -1563,77 +1563,77 @@ namespace WebApplication1.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(decimal NR_CRT, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, global::System.Nullable<decimal> SPOR, global::System.Nullable<decimal> PREMII_BRUTE, global::System.Nullable<decimal> TOTAL_BRUT, global::System.Nullable<decimal> BRUT_IMPOZABIL, global::System.Nullable<decimal> CAS, global::System.Nullable<decimal> CASS, global::System.Nullable<decimal> IMPOZIT, global::System.Nullable<decimal> RETINERI, global::System.Nullable<decimal> VIRAT_CARD) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((decimal)(NR_CRT));
+        public virtual int Insert(global::System.Nullable<decimal> VIRAT_CARD, decimal NR_CRT, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, global::System.Nullable<decimal> SPOR, global::System.Nullable<decimal> PREMII_BRUTE, global::System.Nullable<decimal> TOTAL_BRUT, global::System.Nullable<decimal> BRUT_IMPOZABIL, global::System.Nullable<decimal> CAS, global::System.Nullable<decimal> CASS, global::System.Nullable<decimal> IMPOZIT, global::System.Nullable<decimal> RETINERI) {
+            if ((VIRAT_CARD.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((decimal)(VIRAT_CARD.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(NR_CRT));
             if ((NUME == null)) {
                 throw new global::System.ArgumentNullException("NUME");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(NUME));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(NUME));
             }
             if ((PRENUME == null)) {
                 throw new global::System.ArgumentNullException("PRENUME");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(PRENUME));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(PRENUME));
             }
             if ((FUNCTIE == null)) {
                 throw new global::System.ArgumentNullException("FUNCTIE");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(FUNCTIE));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(FUNCTIE));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(SALAR_BAZA));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(SALAR_BAZA));
             if ((SPOR.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(SPOR.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((PREMII_BRUTE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(PREMII_BRUTE.Value));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(SPOR.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((TOTAL_BRUT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(TOTAL_BRUT.Value));
+            if ((PREMII_BRUTE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(PREMII_BRUTE.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((BRUT_IMPOZABIL.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(BRUT_IMPOZABIL.Value));
+            if ((TOTAL_BRUT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(TOTAL_BRUT.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((CAS.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(CAS.Value));
+            if ((BRUT_IMPOZABIL.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(BRUT_IMPOZABIL.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((CASS.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(CASS.Value));
+            if ((CAS.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(CAS.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((IMPOZIT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(IMPOZIT.Value));
+            if ((CASS.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(CASS.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((RETINERI.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(RETINERI.Value));
+            if ((IMPOZIT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(IMPOZIT.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((VIRAT_CARD.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(VIRAT_CARD.Value));
+            if ((RETINERI.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(RETINERI.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
@@ -1658,77 +1658,77 @@ namespace WebApplication1.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(decimal NR_CRT, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, global::System.Nullable<decimal> SPOR, global::System.Nullable<decimal> PREMII_BRUTE, global::System.Nullable<decimal> TOTAL_BRUT, global::System.Nullable<decimal> BRUT_IMPOZABIL, global::System.Nullable<decimal> CAS, global::System.Nullable<decimal> CASS, global::System.Nullable<decimal> IMPOZIT, global::System.Nullable<decimal> RETINERI, global::System.Nullable<decimal> VIRAT_CARD, decimal Original_NR_CRT) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((decimal)(NR_CRT));
+        public virtual int Update(global::System.Nullable<decimal> VIRAT_CARD, decimal NR_CRT, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, global::System.Nullable<decimal> SPOR, global::System.Nullable<decimal> PREMII_BRUTE, global::System.Nullable<decimal> TOTAL_BRUT, global::System.Nullable<decimal> BRUT_IMPOZABIL, global::System.Nullable<decimal> CAS, global::System.Nullable<decimal> CASS, global::System.Nullable<decimal> IMPOZIT, global::System.Nullable<decimal> RETINERI, decimal Original_NR_CRT) {
+            if ((VIRAT_CARD.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((decimal)(VIRAT_CARD.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(NR_CRT));
             if ((NUME == null)) {
                 throw new global::System.ArgumentNullException("NUME");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(NUME));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(NUME));
             }
             if ((PRENUME == null)) {
                 throw new global::System.ArgumentNullException("PRENUME");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(PRENUME));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(PRENUME));
             }
             if ((FUNCTIE == null)) {
                 throw new global::System.ArgumentNullException("FUNCTIE");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(FUNCTIE));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(FUNCTIE));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(SALAR_BAZA));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(SALAR_BAZA));
             if ((SPOR.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(SPOR.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((PREMII_BRUTE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(PREMII_BRUTE.Value));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(SPOR.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((TOTAL_BRUT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(TOTAL_BRUT.Value));
+            if ((PREMII_BRUTE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(PREMII_BRUTE.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((BRUT_IMPOZABIL.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(BRUT_IMPOZABIL.Value));
+            if ((TOTAL_BRUT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(TOTAL_BRUT.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((CAS.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(CAS.Value));
+            if ((BRUT_IMPOZABIL.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(BRUT_IMPOZABIL.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((CASS.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(CASS.Value));
+            if ((CAS.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(CAS.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((IMPOZIT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(IMPOZIT.Value));
+            if ((CASS.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(CASS.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((RETINERI.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(RETINERI.Value));
+            if ((IMPOZIT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(IMPOZIT.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((VIRAT_CARD.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(VIRAT_CARD.Value));
+            if ((RETINERI.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(RETINERI.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
@@ -1754,8 +1754,8 @@ namespace WebApplication1.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, global::System.Nullable<decimal> SPOR, global::System.Nullable<decimal> PREMII_BRUTE, global::System.Nullable<decimal> TOTAL_BRUT, global::System.Nullable<decimal> BRUT_IMPOZABIL, global::System.Nullable<decimal> CAS, global::System.Nullable<decimal> CASS, global::System.Nullable<decimal> IMPOZIT, global::System.Nullable<decimal> RETINERI, global::System.Nullable<decimal> VIRAT_CARD, decimal Original_NR_CRT) {
-            return this.Update(Original_NR_CRT, NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMII_BRUTE, TOTAL_BRUT, BRUT_IMPOZABIL, CAS, CASS, IMPOZIT, RETINERI, VIRAT_CARD, Original_NR_CRT);
+        public virtual int Update(global::System.Nullable<decimal> VIRAT_CARD, string NUME, string PRENUME, string FUNCTIE, decimal SALAR_BAZA, global::System.Nullable<decimal> SPOR, global::System.Nullable<decimal> PREMII_BRUTE, global::System.Nullable<decimal> TOTAL_BRUT, global::System.Nullable<decimal> BRUT_IMPOZABIL, global::System.Nullable<decimal> CAS, global::System.Nullable<decimal> CASS, global::System.Nullable<decimal> IMPOZIT, global::System.Nullable<decimal> RETINERI, decimal Original_NR_CRT) {
+            return this.Update(VIRAT_CARD, Original_NR_CRT, NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMII_BRUTE, TOTAL_BRUT, BRUT_IMPOZABIL, CAS, CASS, IMPOZIT, RETINERI, Original_NR_CRT);
         }
     }
     

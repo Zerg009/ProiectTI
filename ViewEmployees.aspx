@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="SalaryCalculation.aspx.cs" Inherits="WebApplication1.WebForm4" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ViewEmployees.aspx.cs" Inherits="WebApplication1.WebForm7" %>
 
-<%@ Register Src="~/EmployeeTable.ascx" TagPrefix="uc" TagName="EmployeeTable" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -121,7 +120,16 @@
                 </asp:TemplateField>
 
                 <asp:BoundField DataField="VIRAT_CARD" HeaderText="Virat Card" ReadOnly="True" ItemStyle-CssClass="column-virat-card" />
-
+                <asp:TemplateField HeaderText="View">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnViewDetails" runat="server"
+                            CssClass="btn btn-info btn-sm"
+                            CommandArgument='<%# Eval("NR_CRT") %>'
+                            OnClientClick='<%# "viewEmployee(" + Eval("NR_CRT") + "); return false;" %>'>
+                            <i class="fa fa-eye"></i> View
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <EmptyDataTemplate>
                 <tr>
@@ -132,5 +140,61 @@
             </EmptyDataTemplate>
         </asp:GridView>
     </div>
+    <div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeDetailsLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeDetailsLabel">Employee Details</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <!-- Employee Photo -->
+                    <asp:Image ID="imgEmployeePhoto" runat="server" CssClass="employee-photo" />
 
+                    <!-- Employee Info -->
+                    <div class="employee-details mt-4">
+                        <p><strong>Nume:</strong> <span id="employeeNume"></span></p>
+                        <p><strong>Prenume:</strong> <span id="employeePrenume"></span></p>
+                        <p><strong>Functie:</strong> <span id="employeeFunctie"></span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function viewEmployee(employeeId) {
+            // Use an AJAX call to fetch employee details, including the image
+            $.ajax({
+                url: 'ViewEmployees.aspx/GetEmployeeDetails', // Your endpoint for fetching employee details
+                method: 'POST',
+                data: JSON.stringify({ employeeId: employeeId }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log("Response from server:", response);
+                    var employee = JSON.parse(response.d);
+
+                    // Set employee photo
+                    var imgEmployeePhotoId = '<%= imgEmployeePhoto.ClientID %>';
+                    var imgEmployeePhoto = document.getElementById(imgEmployeePhotoId);
+                    if (imgEmployeePhoto) {
+                        imgEmployeePhoto.src = employee.Poza
+                            ? 'data:image/jpeg;base64,' + employee.Poza
+                            : ''; // Set a placeholder if needed
+                    }
+
+                    // Populate employee details
+                    document.getElementById("employeeNume").innerText = employee.Nume;
+                    document.getElementById("employeePrenume").innerText = employee.Prenume;
+                    document.getElementById("employeeFunctie").innerText = employee.Functie;
+
+                    console.log("Opening modal...");
+                    $('#employeeModal').modal('show');
+                }
+            });
+        }
+    </script>
 </asp:Content>

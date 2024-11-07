@@ -52,18 +52,19 @@ namespace WebApplication1
             int baseSalary = int.Parse(txtBaseSalary.Text.Trim());
             int spor = int.Parse(txtSpor.Text.Trim());
             int grossBonuses = int.Parse(txtGrossBonuses.Text.Trim());
-            int retineri = int.Parse(txtRetineri.Text.Trim()); // Retineri
+            int retineri = int.Parse(txtRetineri.Text.Trim());
 
-            // Prepare the SQL insert statement
-            string insertQuery = "INSERT INTO Salarii_Angajati (NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMII_BRUTE, RETINERI) " +
-                     "VALUES (:name, :surname, :position, :baseSalary, :spor, :grossBonuses, :retineri)";
+            // Prepare the SQL insert statement with an additional parameter for the photo BLOB
+            string insertQuery = "INSERT INTO Salarii_Angajati (NUME, PRENUME, FUNCTIE, SALAR_BAZA, SPOR, PREMII_BRUTE, RETINERI, POZA) " +
+                                 "VALUES (:name, :surname, :position, :baseSalary, :spor, :grossBonuses, :retineri, :photo)";
+
             try
             {
                 using (OracleConnection conn = new OracleConnection(connString))
                 {
                     using (OracleCommand cmd = new OracleCommand(insertQuery, conn))
                     {
-                        // Add parameters
+                        // Add parameters for employee details
                         cmd.Parameters.Add(new OracleParameter(":name", name));
                         cmd.Parameters.Add(new OracleParameter(":surname", surname));
                         cmd.Parameters.Add(new OracleParameter(":position", position));
@@ -72,6 +73,20 @@ namespace WebApplication1
                         cmd.Parameters.Add(new OracleParameter(":grossBonuses", grossBonuses));
                         cmd.Parameters.Add(new OracleParameter(":retineri", retineri));
 
+                        // Check if a file was uploaded
+                        if (filePhoto.HasFile)
+                        {
+                            // Convert the uploaded file to a byte array for the BLOB
+                            byte[] photoData = filePhoto.FileBytes;
+                            cmd.Parameters.Add(new OracleParameter(":photo", OracleDbType.Blob)).Value = photoData;
+                        }
+                        else
+                        {
+                            // If no photo uploaded, set photo to null
+                            cmd.Parameters.Add(new OracleParameter(":photo", DBNull.Value));
+                        }
+
+                        // Open the connection and execute the insert command
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         lblMessage.Text = "Angajat adăugat cu succes!"; // Success message
@@ -87,17 +102,17 @@ namespace WebApplication1
                 ClearForm(); // Clear the form fields
             }
 
-            // Clear the form after adding the employee
-            ClearForm();
+            //// Clear the form after adding the employee
+            //ClearForm();
         }
         private void ClearForm()
         {
             txtName.Text = "";
             txtSurname.Text = "";
-            ddlPosition.SelectedIndex = 0; 
+            ddlPosition.SelectedIndex = 0;
             txtBaseSalary.Text = "";
-            txtSpor.Text = ""; 
-            txtGrossBonuses.Text = ""; 
+            txtSpor.Text = "";
+            txtGrossBonuses.Text = "";
             txtRetineri.Text = "";
         }
         protected void ValidateNameLength(object source, ServerValidateEventArgs args)

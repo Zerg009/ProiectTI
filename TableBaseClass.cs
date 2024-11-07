@@ -11,7 +11,7 @@ namespace WebApplication1
 {
     public abstract class TableBaseClass : System.Web.UI.Page
     {
-        protected string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
+        public static string connString = ConfigurationManager.ConnectionStrings["OracleDbConnection"].ConnectionString;
         protected abstract DropDownList ddlPageSize { get; }
         protected abstract GridView gridViewEmployees { get; }
         protected abstract TextBox txtPageNumber { get; }
