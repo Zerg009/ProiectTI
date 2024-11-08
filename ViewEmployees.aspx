@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <%-- ADD FILTERING AND SORTING--%>
-        <asp:Panel ID="PaginationPanel" runat="server" CssClass="mb-3">
+        <asp:Panel ID="PaginationPanel" runat="server" CssClass="mb-3 mt-2">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex">
                     <div class="input-group me-1" style="width: 200px;">

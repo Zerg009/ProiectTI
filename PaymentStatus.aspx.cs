@@ -21,6 +21,13 @@ namespace WebApplication1
 
                 // Set the report source
                 CrystalReportViewer1.ReportSource = report;
+
+                //DiskFileDestinationOptions fisier = new DiskFileDestinationOptions();
+                //report.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                //report.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                //fisier.DiskFileName = Server.MapPath("fisier1.pdf");
+                //report.ExportOptions.DestinationOptions = fisier;
+                //report.Export();
             }
         }
     }
