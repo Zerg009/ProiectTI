@@ -123,6 +123,7 @@
     </Content>
     <Content Include="Site1.Master" />
     <Content Include="sql\DDL.sql" />
+    <Content Include="TimeAndAdsService.asmx" />
     <Content Include="UpdateData.aspx" />
     <Content Include="AddEmployees.aspx" />
     <Content Include="RemoveEmployees.aspx" />
@@ -195,6 +196,10 @@
     </Compile>
     <Compile Include="TableBaseClass.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeAndAdsService.asmx.cs">
+      <DependentUpon>TimeAndAdsService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UpdateData.aspx.cs">
       <DependentUpon>UpdateData.aspx</DependentUpon>

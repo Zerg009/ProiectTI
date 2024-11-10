@@ -1,15 +1,40 @@
 ﻿/* Full height to the body and form container for centering */
+@import url('main.css');
 body, html {
     height: 100%;
     margin: 0;
-    display: flex;
-    /*justify-content: center;
-    align-items: center;*/
+    padding: 0;
+    width: 100%;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+.header {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header .header-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.header h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+    }
+.header .time-and-ads {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+.header img {
+    max-width: 100%;
+    height: auto;
 }
 /* Centering the form */
 .form-container {
@@ -28,13 +53,13 @@ body {
     margin-bottom: 15px;
 }
 
-    .form-group label {
-        margin-right: 10px;
-    }
+.form-group label {
+    margin-right: 10px;
+}
 
-    .form-group input[type="text"] {
-        width: 200px;
-    }
+.form-group input[type="text"] {
+    width: 200px;
+}
 
 /* Optional: styling the message */
 #lblMessage {
@@ -52,15 +77,15 @@ body {
     border-collapse: collapse;
 }
 
-#gvEmployees th, #gvEmployees td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
+    #gvEmployees th, #gvEmployees td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
-#gvEmployees th {
-    background-color: #f2f2f2;
-    text-align: left;
-}
+    #gvEmployees th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
 
 .gridview-container {
     width: 100%;
@@ -68,50 +93,51 @@ body {
     margin: 20px 0; /* Add some spacing around the grid */
 }
 
-.gridview-container th, .gridview-container td {
-    border: 1px solid #dddddd; /* Light grey border */
-    text-align: left; /* Align text to the left */
-    padding: 8px; /* Add padding inside cells */
-}
+    .gridview-container th, .gridview-container td {
+        border: 1px solid #dddddd; /* Light grey border */
+        text-align: left; /* Align text to the left */
+        padding: 8px; /* Add padding inside cells */
+    }
 
-.gridview-container th {
-    background-color: #f2f2f2; /* Light background for header */
-    font-weight: bold; /* Make header text bold */
-}
+    .gridview-container th {
+        background-color: #f2f2f2; /* Light background for header */
+        font-weight: bold; /* Make header text bold */
+    }
 
-.gridview-container tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternate row color */
-}
+    .gridview-container tr:nth-child(even) {
+        background-color: #f9f9f9; /* Alternate row color */
+    }
 
-.gridview-container tr:hover {
-    background-color: #e0e0e0; /* Highlight row on hover */
-}
+    .gridview-container tr:hover {
+        background-color: #e0e0e0; /* Highlight row on hover */
+    }
+    
 
+    .gridview-container .column-nume {
+        width: 100px;
+    }
 
-.gridview-container .column-nume {
-    width: 100px;
-}
+    .gridview-container .column-prenume {
+        width: 100px;
+    }
 
-.gridview-container .column-prenume {
-     width: 100px;
-}
+    .gridview-container .column-functie {
+        width: 175px;
+    }
+    /* Set specific widths for certain columns */
+    .gridview-container .column-salar-baza,
+    .gridview-container .column-bonus,
+    .gridview-container .column-premii-brute,
+    .gridview-container .column-retineri,
+    .gridview-container .column-total-brut,
+    .gridview-container .column-brut-impozabil,
+    .gridview-container .column-cas,
+    .gridview-container .column-cass,
+    .gridview-container .column-impozit,
+    .gridview-container .column-virat-card {
+        width: 80px; /* Set width for other relevant columns */
+    }
 
-.gridview-container .column-functie {
-     width: 175px;
-}
-/* Set specific widths for certain columns */
-.gridview-container .column-salar-baza ,
-.gridview-container .column-bonus,
-.gridview-container .column-premii-brute,
-.gridview-container .column-retineri,
-.gridview-container .column-total-brut,
-.gridview-container .column-brut-impozabil,
-.gridview-container .column-cas,
-.gridview-container .column-cass,
-.gridview-container .column-impozit,
-.gridview-container .column-virat-card {
-    width: 80px; /* Set width for other relevant columns */
-}
 .column-small-numeric {
     width: 80px; /* Adjust this value to set the desired width */
     text-align: right; /* Optional: Align text to the right for numeric values */
@@ -128,6 +154,7 @@ body {
     width: 100%; /* Ensure labels take full width */
     box-sizing: border-box; /* Include padding and borders in width */
 }
+
 .employee-photo {
     width: 200px; /* Fixed width to create a square shape */
     height: 200px; /* Fixed height to match width */
@@ -141,4 +168,57 @@ body {
     font-size: 1.1em;
     margin: 5px 0;
     color: #333;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+    margin-left: 5%;
+}
+.navbar-brand:hover {
+    color: #dbdbdb;
+
+}
+.navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar-nav .nav-item:hover {
+    background-color: #0056b3;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+.navbar-collapse{
+    margin-right: 10%;
+}
+
+.main-content .p-4 {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;     
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.ad-images img {
+    width: 100px;
+    height: 50px;
+    margin-right: 10px;
+}
+.main-content .col-lg-10 {
+    max-width: 1200px;  /* Limit max width */
+    margin: 0 auto;     /* Center the container */
+}
+.main-content {
+    margin-left: 5%;  /* Add more space on the left */
+    margin-right: 5%; /* Add more space on the right */
+}
+#ContentPlaceHolder1_CrystalReportViewer1__UI {
+    width: 100% !important;  /* Make it responsive 
+    overflow-x: auto !important; /* Enable horizontal scrolling */
 }

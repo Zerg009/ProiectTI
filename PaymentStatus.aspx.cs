@@ -1,5 +1,6 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using CrystalDecisions.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,9 @@ namespace WebApplication1
                 string path = Server.MapPath("CrystalReport1.rpt");
                 report.Load(path);
 
-                // Set the report source
                 CrystalReportViewer1.ReportSource = report;
-
-                //DiskFileDestinationOptions fisier = new DiskFileDestinationOptions();
-                //report.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
-                //report.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
-                //fisier.DiskFileName = Server.MapPath("fisier1.pdf");
-                //report.ExportOptions.DestinationOptions = fisier;
-                //report.Export();
+                CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
+                
             }
         }
     }

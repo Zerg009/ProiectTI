@@ -4,7 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="d-flex justify-content-end align-items-center mb-3">
+    <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
+    
+    
+    
+     <%--<div class="d-flex justify-content-end align-items-center mb-3">
         <asp:Label ID="lblMessage" runat="server" CssClass="text-danger me-3" />
         <asp:LinkButton ID="btnPrintAll" runat="server" CssClass="btn btn-primary ms-3" OnClick="btnPrintAll_Click" CausesValidation="false">
             <i class="fas fa-print me-2"></i> Printează (toți) fluturașii
@@ -167,6 +171,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
 </asp:Content>

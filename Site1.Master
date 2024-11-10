@@ -14,67 +14,147 @@
     <link href="libs/bootstrap.min.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
     <link href="libs/fontawesome.min.css" rel="stylesheet" />
-   
+
+
 </head>
 <body>
     <form id="form1" runat="server">
-        <%-- Navbar --%>
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="img/logo.png" width="30" height="30" class="d-inline-block align-text-top" />
-                        Salary Reports
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manage Data
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="UpdateData.aspx">Update Data</a></li>
-                                    <li><a class="dropdown-item" href="AddEmployees.aspx">Add Employees</a></li>
-                                    <li><a class="dropdown-item" href="RemoveEmployees.aspx">Remove Employees</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li><a class="dropdown-item" href="ViewEmployees.aspx">View Employees</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Print
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="PaymentStatus.aspx">Payment Status</a></li>
-                                    <li><a class="dropdown-item" href="PaySlips.aspx">Payslips</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+        <div class="header text-center p-3 rounded shadow-sm bg-light">
+            <div class="d-flex align-items-center justify-content-center">
+                <!-- Left Image -->
+                <div class="me-3">
+                    <img id="adImage1" src="" alt="Ad 1" class="header-image"/>
+                </div>
+
+                <!-- Header Content: Title and Time -->
+                <div>
+                    <h1 class="h4 mb-1">Proiect ASP.NET Aplicație Salarizare - Semenenco Stanislav</h1>
+                    <div class="text-secondary">
+                        <strong>Current Time:</strong>
+                        <asp:Label ID="lblCurrentTime" runat="server"></asp:Label>
                     </div>
                 </div>
-            </nav>
+
+                <!-- Right Image -->
+                <div class="ms-3">
+                    <img id="adImage2" src="" alt="Ad 2" class="header-image"/>
+                </div>
+            </div>
         </div>
+
+        <%-- Navbar --%>
+        <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
+            <!-- Brand aligned to the left -->
+            <a class="navbar-brand" href="Homepage.aspx">
+                <img src="img/logo.png" width="30" height="30" class="d-inline-block align-text-top" />
+                Salary Reports
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse w-100 d-flex justify-content-center" id="navbarSupportedContent">
+                <!-- Navbar items centered -->
+                <ul class="navbar-nav mb-2 mb-lg-0 w-100 justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Homepage.aspx">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manage Data</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="UpdateData.aspx">Update Data</a></li>
+                            <li><a class="dropdown-item" href="AddEmployees.aspx">Add Employees</a></li>
+                            <li><a class="dropdown-item" href="RemoveEmployees.aspx">Remove Employees</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="ViewEmployees.aspx">View Employees</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Print</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="PaymentStatus.aspx">Payment Status</a></li>
+                            <li><a class="dropdown-item" href="PaySlips.aspx">Payslips</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <%-- Main Content --%>
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+        <div class="main-content mt-5">
+            <div>
+                <div class="row justify-content-center">
+                    <!-- Content Goes Here -->
+                    <div class="col-12">
+                        <div class="p-4 border rounded shadow-sm">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
-
-
-
     <script src="libs/jquery-3.7.1.min.js"></script>
     <script src="libs/jquery.validate.min.js"></script>
     <script src="libs/jquery.validate.unobtrusive.js"></script>
     <script src="libs/bootstrap.bundle.min.js"></script>
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap.min.js"></script>
-    
+    <script>
+        // Function to update the current time
+        function updateCurrentTime() {
+            $.ajax({
+                url: "TimeAndAdsService.asmx/GetCurrentTime", // Correct service URL
+                method: "POST", // Use POST for WebMethod calls
+                contentType: "application/json; charset=utf-8", // Ensures the request is sent as JSON
+                dataType: "json", // Expects JSON response
+                success: function (response) {
+                    var currentTime = response.d; // Response is wrapped in 'd'
+                    $("#lblCurrentTime").text(currentTime); // Update time on page
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error:", error); // Handle error
+                }
+            });
+        }
+
+        // Function to update the random ad image
+        function updateRandomAd() {
+            $.ajax({
+                url: "TimeAndAdsService.asmx/GetRandomAd", // Call to WebMethod for random ad
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    // Deserialize the response.d which is a string to an object
+                    var parsedResponse = JSON.parse(response.d);
+
+                    // Access the individual image paths from the parsed response
+                    var adImagePath1 = parsedResponse.ImagePath1;
+                    var adImagePath2 = parsedResponse.ImagePath2;
+
+                    // Update the source of the ad images on the page
+                    $("#adImage1").attr("src", adImagePath1);
+                    $("#adImage2").attr("src", adImagePath2);
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error:", error); // Handle any errors during the request
+                }
+            });
+        }
+
+        // Call updateCurrentTime every second to update the time continuously
+        setInterval(updateCurrentTime, 1000); // Update time every second
+
+        // Call updateRandomAd every 10 seconds to update the ad image
+        setInterval(updateRandomAd, 10000); // Update ad every 10 seconds
+        $(document).ready(function () {
+            updateRandomAd(); // Initial call for ad images
+        });
+</script>
+
+
+
+
 </body>
 </html>
