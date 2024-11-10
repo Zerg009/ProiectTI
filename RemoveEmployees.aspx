@@ -46,7 +46,7 @@
             AllowSorting="True" OnSorting="gridViewEmployees_Sorting" AllowPaging="False"
             OnPageIndexChanging="gridViewEmployees_PageIndexChanging" DataKeyNames="NR_CRT">
             <Columns>
-                <asp:BoundField DataField="NR_CRT" HeaderText="ID" ReadOnly="True" />
+                <asp:BoundField DataField="NR_CRT" HeaderText="ID" ReadOnly="True" ItemStyle-CssClass="column-id"/>
                 <asp:TemplateField HeaderText="Nume" ItemStyle-CssClass="column-nume">
                     <ItemTemplate>
                         <asp:Label ID="lblNUME" runat="server" Text='<%# Bind("NUME") %>' />
@@ -121,7 +121,7 @@
 
                 <asp:BoundField DataField="VIRAT_CARD" HeaderText="Virat Card" ReadOnly="True" ItemStyle-CssClass="column-virat-card" />
 
-                <asp:TemplateField HeaderText="Actions" ItemStyle-CssClass="column-actions">
+                <asp:TemplateField HeaderText="Actions" ItemStyle-CssClass="column-last">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnDelete" runat="server" 
                             CssClass="btn btn-danger btn-sm" 

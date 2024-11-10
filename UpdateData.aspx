@@ -52,7 +52,7 @@
             AllowSorting="True" OnSorting="gridViewEmployees_Sorting" AllowPaging="False"
             OnPageIndexChanging="gridViewEmployees_PageIndexChanging" DataKeyNames="NR_CRT">
             <Columns>
-                <asp:BoundField DataField="NR_CRT" HeaderText="ID" ReadOnly="True" />
+                <asp:BoundField DataField="NR_CRT" HeaderText="ID" ReadOnly="True" ItemStyle-CssClass="column-id"/>
                 <asp:TemplateField HeaderText="Nume" ItemStyle-CssClass="column-nume">
                     <ItemTemplate>
                         <asp:TextBox ID="txtNUME" runat="server" Text='<%# Bind("NUME") %>' />
