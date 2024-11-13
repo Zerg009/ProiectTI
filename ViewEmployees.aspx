@@ -148,7 +148,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <!-- Employee Photo -->
-                    <asp:Image ID="imgEmployeePhoto" runat="server" CssClass="employee-photo" />
+                    <asp:Image ID="imgEmployeePhoto"  runat="server" CssClass="employee-photo" />
 
                     <!-- Employee Info -->
                     <div class="employee-details mt-4">
@@ -183,7 +183,7 @@
                     if (imgEmployeePhoto) {
                         imgEmployeePhoto.src = employee.Poza
                             ? 'data:image/jpeg;base64,' + employee.Poza
-                            : ''; // Set a placeholder if needed
+                            : 'img/blank.jpg';
                     }
 
                     // Populate employee details

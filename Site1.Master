@@ -15,7 +15,12 @@
     <link href="css/main.css" rel="stylesheet" />
     <link href="libs/fontawesome.min.css" rel="stylesheet" />
 
-
+    <script src="libs/jquery-3.7.1.min.js"></script>
+    <script src="libs/jquery.validate.min.js"></script>
+    <script src="libs/jquery.validate.unobtrusive.js"></script>
+    <script src="libs/bootstrap.bundle.min.js"></script>
+    <script src="libs/popper.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -59,23 +64,26 @@
                         <a class="nav-link active" aria-current="page" href="Homepage.aspx">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manage Data</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Introducere Date</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="UpdateData.aspx">Update Data</a></li>
-                            <li><a class="dropdown-item" href="AddEmployees.aspx">Add Employees</a></li>
-                            <li><a class="dropdown-item" href="RemoveEmployees.aspx">Remove Employees</a></li>
+                            <li><a class="dropdown-item" href="UpdateData.aspx">Actualizare Date</a></li>
+                            <li><a class="dropdown-item" href="AddEmployees.aspx">Adaugare angajati</a></li>
+                            <li><a class="dropdown-item" href="RemoveEmployees.aspx">Stergere angajati</a></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            <li><a class="dropdown-item" href="ViewEmployees.aspx">View Employees</a></li>
+                            <li><a class="dropdown-item" href="ViewEmployees.aspx">Vizualizare Angajati</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Print</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiparire</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="PaymentStatus.aspx">Payment Status</a></li>
-                            <li><a class="dropdown-item" href="PaySlips.aspx">Payslips</a></li>
+                            <li><a class="dropdown-item" href="PaymentStatus.aspx">Stat plata</a></li>
+                            <li><a class="dropdown-item" href="PaySlips.aspx">Fluturasi</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ChangeFees.aspx">Modificare Impozite</a>
                     </li>
                 </ul>
             </div>
@@ -94,17 +102,12 @@
             </div>
         </div>
     </form>
-    <script src="libs/jquery-3.7.1.min.js"></script>
-    <script src="libs/jquery.validate.min.js"></script>
-    <script src="libs/jquery.validate.unobtrusive.js"></script>
-    <script src="libs/bootstrap.bundle.min.js"></script>
-    <script src="libs/popper.min.js"></script>
-    <script src="libs/bootstrap.min.js"></script>
+    
     <script>
         // Function to update the current time
         function updateCurrentTime() {
             $.ajax({
-                url: "TimeAndAdsService.asmx/GetCurrentTime", // Correct service URL
+                url: "TimeAndAdsService.asmx/GetCurrentDateTime", // Correct service URL
                 method: "POST", // Use POST for WebMethod calls
                 contentType: "application/json; charset=utf-8", // Ensures the request is sent as JSON
                 dataType: "json", // Expects JSON response

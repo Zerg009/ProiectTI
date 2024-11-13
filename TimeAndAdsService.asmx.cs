@@ -18,9 +18,9 @@ namespace WebApplication1
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string GetCurrentTime()
+        public string GetCurrentDateTime()
         {
-            return DateTime.Now.ToString("HH:mm:ss");
+            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         [WebMethod]
