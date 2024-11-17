@@ -4,6 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
+        <div class="d-flex justify-content-center mb-3">
+        <asp:Label ID="lblPageHeader" runat="server" CssClass="h2 text-center" Text="Vizualizare Angajati"></asp:Label>
+    </div>
         <%-- ADD FILTERING AND SORTING--%>
         <asp:Panel ID="PaginationPanel" runat="server" CssClass="mb-3 mt-2">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -71,7 +74,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Bonus %" ItemStyle-CssClass="column-bonus">
+                <asp:TemplateField HeaderText="Spor %" ItemStyle-CssClass="column-bonus">
                     <ItemTemplate>
                         <asp:Label ID="lblSPOR" runat="server" Text='<%# Bind("SPOR") %>' />
                     </ItemTemplate>
@@ -147,10 +150,7 @@
                     <h5 class="modal-title" id="employeeDetailsLabel">Employee Details</h5>
                 </div>
                 <div class="modal-body text-center">
-                    <!-- Employee Photo -->
                     <asp:Image ID="imgEmployeePhoto"  runat="server" CssClass="employee-photo" />
-
-                    <!-- Employee Info -->
                     <div class="employee-details mt-4">
                         <p><strong>Nume:</strong> <span id="employeeNume"></span></p>
                         <p><strong>Prenume:</strong> <span id="employeePrenume"></span></p>
@@ -168,7 +168,7 @@
         function viewEmployee(employeeId) {
             // Use an AJAX call to fetch employee details, including the image
             $.ajax({
-                url: 'ViewEmployees.aspx/GetEmployeeDetails', // Your endpoint for fetching employee details
+                url: 'ViewEmployees.aspx/GetEmployeeDetails', 
                 method: 'POST',
                 data: JSON.stringify({ employeeId: employeeId }),
                 dataType: "json",

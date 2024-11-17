@@ -57,7 +57,6 @@ namespace WebApplication1
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string enteredPassword = txtModalPassword.Text;
-
             string storedHashedPassword = GetStoredHashedPasswordFromDB();
             if (PasswordHelper.VerifyPassword(enteredPassword, storedHashedPassword))
             {
@@ -68,7 +67,7 @@ namespace WebApplication1
             else
             {
                 lblErrorMessage.Text = "Incorrect password, please try again.";
-                lblErrorMessage.Visible = true; // Show the error message label
+                lblErrorMessage.Visible = true; 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal();", true);
             }
         }
@@ -91,7 +90,7 @@ namespace WebApplication1
                 connection.Open();
                 using (var command = new OracleCommand("UPDATE Parametri_Financiari SET CAS_PENSIE = COALESCE(:casPensii, CAS_PENSIE), CASS_SANATATE = COALESCE(:cassSanatate, CASS_SANATATE), IMPOZIT = COALESCE(:impozit, IMPOZIT) WHERE ID = 1", connection))
                 {
-                    // Explicitly set the parameter data types
+                    
                     command.Parameters.Add(new OracleParameter("casPensii", OracleDbType.Decimal, casPensii.HasValue ? (object)casPensii.Value : DBNull.Value, ParameterDirection.Input));
                     command.Parameters.Add(new OracleParameter("cassSanatate", OracleDbType.Decimal, cassSanatate.HasValue ? (object)cassSanatate.Value : DBNull.Value, ParameterDirection.Input));
                     command.Parameters.Add(new OracleParameter("impozit", OracleDbType.Decimal, impozit.HasValue ? (object)impozit.Value : DBNull.Value, ParameterDirection.Input));

@@ -99,11 +99,8 @@ namespace WebApplication1
             }
             finally
             {
-                ClearForm(); // Clear the form fields
+                ClearForm();
             }
-
-            //// Clear the form after adding the employee
-            //ClearForm();
         }
         private void ClearForm()
         {

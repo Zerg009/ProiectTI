@@ -3,5 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="d-flex justify-content-center mb-3">
+            <asp:Label ID="lblPageHeader" runat="server" CssClass="h2 text-center" Text="Stat Plata"></asp:Label>
+        </div>
     <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
 </asp:Content>

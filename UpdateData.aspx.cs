@@ -33,23 +33,22 @@ namespace WebApplication1
 
         protected void ValidatePage()
         {
-            Page.Validate(); // Trigger all validators
+            Page.Validate(); 
             if (!Page.IsValid)
             {
-                // Find the first invalid validator and display its error message
+                
                 foreach (BaseValidator validator in Page.Validators)
                 {
                     if (!validator.IsValid)
                     {
-                        lblMessage.Text = validator.ErrorMessage; // Display only the first error message
-                        break; // Exit the loop after the first invalid validator
+                        lblMessage.Text = validator.ErrorMessage; 
+                        break; 
                     }
                 }
             }
             else
             {
-                lblMessage.Text = ""; // Clear the error message if validation passes
-                                      // Proceed with save logic
+                lblMessage.Text = "";           
             }
         }
 

@@ -4,6 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
+        <div class="d-flex justify-content-center mb-3">
+            <asp:Label ID="lblPageHeader" runat="server" CssClass="h2 text-center" Text="Actualizare Date"></asp:Label>
+        </div>
         <%-- ADD FILTERING AND SORTING--%>
         <div class="d-flex justify-content-end align-items-center mb-3">
             <asp:Label ID="lblMessage" runat="server" CssClass="text-danger me-3" />
@@ -114,13 +117,13 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Bonus %" ItemStyle-CssClass="column-bonus">
+                <asp:TemplateField HeaderText="Spor %" ItemStyle-CssClass="column-bonus">
                     <ItemTemplate>
                         <asp:TextBox ID="txtSPOR" runat="server" Text='<%# Bind("SPOR") %>' />
                         <asp:RequiredFieldValidator ControlToValidate="txtSPOR" Display="None" runat="server"
-                            ErrorMessage="Bonus % is required." />
+                            ErrorMessage="Spor % is required." />
                         <asp:RangeValidator ControlToValidate="txtSPOR" MinimumValue="0" MaximumValue="999" runat="server"
-                            Type="Double" Display="None" ErrorMessage="Bonus % must be a positive number." />
+                            Type="Double" Display="None" ErrorMessage="Spor % must be a positive number." />
                     </ItemTemplate>
                 </asp:TemplateField>
 

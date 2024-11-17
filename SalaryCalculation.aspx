@@ -5,6 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
+        <div class="d-flex justify-content-center mb-3">
+            <asp:Label ID="lblPageHeader" runat="server" CssClass="h2 text-center" Text="Vizualizare Angajati"></asp:Label>
+        </div>
         <%-- ADD FILTERING AND SORTING--%>
         <asp:Panel ID="PaginationPanel" runat="server" CssClass="mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -72,7 +75,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Bonus %" ItemStyle-CssClass="column-bonus">
+                <asp:TemplateField HeaderText="Spor %" ItemStyle-CssClass="column-bonus">
                     <ItemTemplate>
                         <asp:Label ID="lblSPOR" runat="server" Text='<%# Bind("SPOR") %>' />
                     </ItemTemplate>

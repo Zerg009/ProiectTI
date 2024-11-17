@@ -19,14 +19,6 @@ namespace WebApplication1
         protected override Button btnPreviousPage => PreviousPageButton;
         protected override Button btnNextPage => NextPageButton;
 
-        //protected override void Page_Load(object sender, EventArgs e)
-        //{
-        //    if (!IsPostBack)
-        //    {
-        //        GetEmployeeDetails(1);
-        //    }
-        //}
-
         [WebMethod]
         public static string GetEmployeeDetails(int employeeId)
         {
@@ -62,7 +54,7 @@ namespace WebApplication1
                             }
                             else
                             {
-                                // Log when no data is found for the given employeeId
+                               
                                 System.Diagnostics.Debug.WriteLine($"No employee found for ID: {employeeId}");
                             }
                         }
@@ -70,8 +62,7 @@ namespace WebApplication1
                 }
             }
             catch (Exception ex)
-            {
-                // Log any exceptions to help diagnose the issue
+            { 
                 System.Diagnostics.Debug.WriteLine($"Error in GetEmployeeDetails: {ex.Message}");
             }
 

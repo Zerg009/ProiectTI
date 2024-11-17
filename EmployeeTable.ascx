@@ -98,7 +98,7 @@
                     <asp:TextBox ID="txtSALAR_BAZA" runat="server" Text='<%# Bind("SALAR_BAZA") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Bonus %" ItemStyle-CssClass="column-bonus">
+            <asp:TemplateField HeaderText="Spor %" ItemStyle-CssClass="column-bonus">
                 <ItemTemplate>
                     <asp:TextBox ID="txtSPOR" runat="server" Text='<%# Bind("SPOR") %>' />
                 </ItemTemplate>

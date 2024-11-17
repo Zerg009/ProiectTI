@@ -3,10 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="d-flex justify-content-center mb-3">
+            <asp:Label ID="lblPageHeader" runat="server" CssClass="h2 text-center" Text="Modificare Impozite"></asp:Label>
+        </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <!-- Login Modal HTML -->
+           <%--  Login Modal  --%> 
             <div id="loginModal" class="modal fade" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -18,7 +21,7 @@
                             <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="false" />
                         </div>
                         <div class="modal-footer d-flex justify-content-between w-100">
-                            <button type="button" class="btn btn-info" onclick="showChangePasswordModal()">Change Password</button>
+                            <button type="button" class="btn btn-info btn-sm" onclick="showChangePasswordModal()">Change Password</button>
 
                             <div class="ml-auto">
                                 <asp:Button ID="btnCloseModal" runat="server" Text="Close" OnClick="btnCloseModal_Click" CssClass="btn btn-secondary" />

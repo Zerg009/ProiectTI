@@ -36,7 +36,7 @@ namespace WebApplication1
 
             string[] adImages = Directory.GetFiles(adFolderPath, "*.jpg");
 
-            if (adImages.Length < 1) // Ensure there is at least one image
+            if (adImages.Length < 1)
             {
                 throw new FileNotFoundException("No ad images found in the folder.");
             }
@@ -47,7 +47,7 @@ namespace WebApplication1
             string randomAdImage1 = adImages[random.Next(adImages.Length)];
             string randomAdImage2 = adImages[random.Next(adImages.Length)];
 
-            // Prepare the relative paths for the images
+           
             string relativePath1 = "/Ads/" + Path.GetFileName(randomAdImage1);
             string relativePath2 = "/Ads/" + Path.GetFileName(randomAdImage2);
 
